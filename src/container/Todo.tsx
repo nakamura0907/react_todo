@@ -6,7 +6,8 @@ import List from '../presentational/atoms/List';
 
 interface IState {
     count: number;
-    todos: Array;
+    // todos: Array;
+    todos: any[];
     value: string;
 }
 

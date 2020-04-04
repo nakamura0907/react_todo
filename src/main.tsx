@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import './sass/main.sass';
 
 import Todo from './container/Todo';
 

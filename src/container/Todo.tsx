@@ -2,12 +2,11 @@ import * as React from 'react';
 
 import Btn from '../presentational/atoms/Btn';
 import Form from '../presentational/atoms/Form';
-import List from '../presentational/atoms/List';
+import TodoList from '../presentational/molecules/TodoList';
 
 interface IState {
     count: number;
-    // todos: Array;
-    todos: any[];
+    todos: string[];
     value: string;
 }
 
@@ -23,6 +22,7 @@ export default class Todo extends React.Component<{}, IState> {
     }
 
     addTodo = () => {
+        console.log('1つ目の関数です');
         const {todos, value } = this.state;
         this.setState({
             todos: [...todos, value]
@@ -32,6 +32,14 @@ export default class Todo extends React.Component<{}, IState> {
     changeValue = (e) => {
         this.setState({
             value: e.target.value
+        });
+    }
+
+    removeTodo = (index) => {
+        console.log('2つ目の関数です.');
+        const {todos} = this.state;
+        this.setState({
+            todos: [...todos.slice(0, index), ...todos.slice(index + 1)]
         })
     }
 
@@ -39,10 +47,10 @@ export default class Todo extends React.Component<{}, IState> {
         return(
             <>
                 <div className="l-flex">
-                    <Form onInputFunction={this.changeValue} value={this.state.value} />
+                    <Form onChangeFunction={this.changeValue} value={this.state.value} />
                     <Btn text="ADD!" onClickFunction={this.addTodo} />
                 </div>
-                <List todos={this.state.todos}/>
+                <TodoList todos={this.state.todos} onClickFunction={this.removeTodo} />
             </>
         );
     }

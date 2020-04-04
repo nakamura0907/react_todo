@@ -44,7 +44,7 @@ export default class Todo extends React.Component<{}, IState> {
     render() {
         return(
             <>
-                <div className="l-flex">
+                <div className="l-flex form">
                     <Form onChangeFunction={this.changeValue} value={this.state.value} />
                     <Btn text="ADD!" onClickFunction={this.addTodo} />
                 </div>

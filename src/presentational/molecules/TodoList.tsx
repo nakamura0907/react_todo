@@ -9,7 +9,7 @@ const TodoList = (props) => {
                 <li key={index} className="list-item l-flex">
                     <i className="far fa-square list-icon"></i>
                     <p>{todo}</p>
-                    <Btn text="remove!" onClickFunction={props.onClickFunction(index)} />
+                    <Btn text="remove!" onClickFunction={() => props.onClickFunction(index)} />
                 </li>
             )}
         </ul>

@@ -22,7 +22,6 @@ export default class Todo extends React.Component<{}, IState> {
     }
 
     addTodo = () => {
-        console.log('1つ目の関数です');
         const {todos, value } = this.state;
         this.setState({
             todos: [...todos, value]
@@ -36,11 +35,10 @@ export default class Todo extends React.Component<{}, IState> {
     }
 
     removeTodo = (index) => {
-        console.log('2つ目の関数です.');
         const {todos} = this.state;
         this.setState({
             todos: [...todos.slice(0, index), ...todos.slice(index + 1)]
-        })
+        });
     }
 
     render() {

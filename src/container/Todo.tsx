@@ -17,7 +17,7 @@ export default class Todo extends React.Component<{}, IState> {
         this.state = {
             count: 0,
             todos: [],
-            value: ''
+            value: '',
         }
     }
 

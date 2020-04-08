@@ -1,12 +1,18 @@
 import * as React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import Btn from '../presentational/atoms/Btn';
 import Form from '../presentational/atoms/Form';
 import TodoList from '../presentational/molecules/TodoList';
 
+interface TodoItem {
+    id: string;
+    value: string;
+}
+
 interface IState {
     count: number;
-    todos: string[];
+    todos: TodoItem[];
     value: string;
 }
 
@@ -24,7 +30,7 @@ export default class Todo extends React.Component<{}, IState> {
     addTodo = () => {
         const {todos, value } = this.state;
         this.setState({
-            todos: [...todos, value]
+            todos: [...todos, { id: uuidv4(), value }]
         })
     }
 

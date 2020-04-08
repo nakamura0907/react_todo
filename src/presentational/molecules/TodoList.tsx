@@ -6,7 +6,7 @@ const TodoList = (props) => {
     return(
         <ul className="list l-flex">
             {props.todos.map((todo, index) =>
-                <List onClickFunction={props.onClickFunction} key={index} todo={todo} index={index} />
+                <List onClickFunction={props.onClickFunction} key={todo.id} todo={todo.value} index={index} />
             )}
         </ul>
     );

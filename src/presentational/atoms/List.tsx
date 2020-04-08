@@ -28,7 +28,7 @@ class List extends React.Component<IProps, IState> {
 
     render() {
         return(
-            <li key={this.props.index} className={"list-item l-flex" + (this.state.active ? " is-active" : "")} >
+            <li className={"list-item l-flex" + (this.state.active ? " is-active" : "")} >
                 <i onClick={this.changeActive} className={"far list-icon" + (this.state.active ? " fa-check-square" : " fa-square")}></i>
                 <p>{this.props.todo}</p>
                 <Btn text="remove!" onClickFunction={() => this.props.onClickFunction(this.props.index)} />

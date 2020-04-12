@@ -1,18 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Router, Route, browserHistory } from 'react-router';
 import './sass/main.sass';
 
-import Todo from './container/Todo';
+import Home from './Home';
 
-class App extends React.Component {
+import TodoPage from './page/TodoPage';
 
-    render() {
-        return(
-            <>
-                <Todo />
-            </>
-        );
-    }
-}
-
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render((
+    <Router history={browserHistory}>
+        <Route path="/" component={Home} />
+        <Route path="/todo" component={TodoPage} />
+    </Router>
+), document.getElementById('app'));

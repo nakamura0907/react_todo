@@ -1,6 +1,11 @@
 import * as React from 'react';
 
-const Btn = (props) => {
+interface IProps {
+    onClickFunction: () => void;
+    text: String;
+}
+
+const Btn = (props: IProps) => {
     return(
         <button onClick={props.onClickFunction} className="btn">{props.text}</button>
     );

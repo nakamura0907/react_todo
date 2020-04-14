@@ -2,6 +2,11 @@ import * as React from 'react';
 
 import List from '../atoms/List';
 
+interface IProps {
+    todos: String[];
+    onClickFunction: () => void;
+}
+
 const TodoList = (props) => {
     return(
         <ul className="list l-flex">

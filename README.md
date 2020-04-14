@@ -6,5 +6,4 @@
 
 ### Installation
     1. npm install
-    1. コードの編集
     1. npm run build

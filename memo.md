@@ -1,3 +1,13 @@
+### 課題
+- styled-component
+- ADD後のフォーム初期化
+- todoリストはObjectかMapで
+- ~README.md~
+- ディレクトリ構造
+- lint,prettier
+- TypeScriptの型
+
+
 ### メモ
 - Listコンポーネントがstateを保持していて尚且つ削除することで不具合が生じた
     - この問題をuuidを用いて解決した

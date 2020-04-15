@@ -1,14 +1,16 @@
-import * as React from 'react';
+import * as React from "react";
 
-interface IProps {
-    onClickFunction: () => void;
-    text: String;
+interface Props {
+  onClickFunction: () => void;
+  text: string;
 }
 
-const Btn = (props: IProps) => {
-    return(
-        <button onClick={props.onClickFunction} className="btn">{props.text}</button>
-    );
-}
+const Btn = (props: Props) => {
+  return (
+    <button onClick={props.onClickFunction} className="btn">
+      {props.text}
+    </button>
+  );
+};
 
 export default Btn;

@@ -1,16 +1,12 @@
-import * as React from 'react';
+import * as React from "react";
 
-interface IProps {
-    onChangeFunction: any;
-    value: String;
+interface Props {
+  onChangeFunction: (e: object) => void;
+  value: string;
 }
 
-const Form = (props) => {
-    return(
-        <>
-            <input type="text" onChange={props.onChangeFunction} value={props.value} name="todo" className="form-text" />
-        </>
-    );
-}
+const Form = (props: Props) => {
+  return <input type="text" onChange={props.onChangeFunction} value={props.value} name="todo" className="form-text" />;
+};
 
 export default Form;

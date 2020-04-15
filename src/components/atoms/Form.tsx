@@ -5,7 +5,7 @@ interface Props {
   value: string;
 }
 
-const Form = (props: Props) => {
+const Form: React.FC<Props> = (props) => {
   return <input type="text" onChange={props.onChangeFunction} value={props.value} name="todo" className="form-text" />;
 };
 

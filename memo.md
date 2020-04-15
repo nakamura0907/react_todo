@@ -1,22 +1,7 @@
 ### 課題
-- ~デザインの統一感~
-    - 要素の端揃えなど
 - styled-component
     - Reactの場合はcssよりもこちらを（できるだけ）
-- ~ADD後のフォーム初期化~
-    - 空白無効など
-- todoリストはObjectかMapで
-    - 配列よりも効率的?
-- ~README.md~
-    - どのような技術を使っているのかなど
-    - ポートフォリオのアピールに
-- ~ディレクトリ構造~
-- ~lint,prettier~
-    - 両方入れて連携させる
-- ~TypeScriptの型~
-    - Atomsなどのコンポーネントにも
-        - const Sample = (props: IProps) => {}の形で
-    - そのコンポーネントを見るだけで何が渡って来るのか分かる
+- todoリストObject化
 
 
 ### メモ

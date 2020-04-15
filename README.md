@@ -12,4 +12,4 @@
     - Webpack:
     - TypeScript:
     - React:
-    
+    - eslint+prettier:

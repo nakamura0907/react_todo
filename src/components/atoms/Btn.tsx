@@ -5,7 +5,7 @@ interface Props {
   text: string;
 }
 
-const Btn = (props: Props) => {
+const Btn: React.FC<Props> = (props) => {
   return (
     <button onClick={props.onClickFunction} className="btn">
       {props.text}

@@ -12,7 +12,7 @@ interface Props {
   onClickFunction: (index: number) => void;
 }
 
-const TodoList = (props: Props) => {
+const TodoList: React.FC<Props> = (props) => {
   return (
     <ul className="list l-flex">
       {props.todos.map((todo, index) => (

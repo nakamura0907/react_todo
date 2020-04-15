@@ -2,10 +2,10 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import "./sass/main.sass";
 
-import Todo from "./components/pages/Todo";
+import Todo from "./components/organisms/Todo";
 
 class App extends React.Component {
-  render() {
+  render(): object {
     return (
       <>
         <Todo />

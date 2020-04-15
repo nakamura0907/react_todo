@@ -49,7 +49,7 @@ export default class Todo extends React.Component<{}, State> {
     });
   };
 
-  render() {
+  render(): object {
     return (
       <>
         <div className="l-flex form">

@@ -1,6 +1,5 @@
 ### 課題
 - styled-component
-    - Reactの場合はcssよりもこちらを（できるだけ）
 - todoリストObject化
 
 

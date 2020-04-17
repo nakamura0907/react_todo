@@ -1,17 +1,27 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import "./sass/main.sass";
+import { Provider } from "react-redux";
 
-import Todo from "./components/organisms/Todo";
+import { createStore } from "redux";
+import todolist from "./reducers/reducers";
+const store = createStore(todolist);
+
+import TodoList from "./components/TodoList";
 
 class App extends React.Component {
-  render(): object {
+  render() {
     return (
       <>
-        <Todo />
+        <TodoList />
       </>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("app")
+);

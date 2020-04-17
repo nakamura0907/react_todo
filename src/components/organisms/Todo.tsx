@@ -21,7 +21,7 @@ export default class Todo extends React.Component<{}, State> {
     super(props);
     this.state = {
       count: 0,
-      todos: [],
+      todos: {},
       value: "",
     };
   }
@@ -29,8 +29,11 @@ export default class Todo extends React.Component<{}, State> {
   addTodo = (): void => {
     const { todos, value } = this.state;
     if (value) {
+        console.log(todos)
+        const id = String(uuidv4());
       this.setState({
-        todos: [...todos, { id: uuidv4(), value }],
+        // todos: [...todos, { id: uuidv4(), value }],
+        todos: {...todos, id: {value}}
         value: "",
       });
     }
@@ -45,7 +48,7 @@ export default class Todo extends React.Component<{}, State> {
   removeTodo = (index): void => {
     const { todos } = this.state;
     this.setState({
-      todos: [...todos.slice(0, index), ...todos.slice(index + 1)],
+      // todos: [...todos.slice(0, index), ...todos.slice(index + 1)],
     });
   };
 
@@ -56,8 +59,8 @@ export default class Todo extends React.Component<{}, State> {
           <Form onChangeFunction={this.changeValue} value={this.state.value} />
           <Btn text="ADD!" onClickFunction={this.addTodo} />
         </div>
-        <TodoList todos={this.state.todos} onClickFunction={this.removeTodo} />
-      </>
+{  //      <TodoList todos={this.state.todos} onClickFunction={this.removeTodo} />
+}      </>
     );
   }
 }

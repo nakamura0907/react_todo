@@ -7,13 +7,13 @@ import { createStore } from "redux";
 import todolist from "./reducers/reducers";
 const store = createStore(todolist);
 
-import TodoList from "./components/TodoList";
+import TodoApp from "./components/pages/TodoApp";
 
 class App extends React.Component {
   render() {
     return (
       <>
-        <TodoList />
+        <TodoApp />
       </>
     );
   }

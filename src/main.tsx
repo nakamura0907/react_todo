@@ -4,8 +4,8 @@ import "./sass/main.sass";
 import { Provider } from "react-redux";
 
 import { createStore } from "redux";
-import todolist from "./reducers/reducers";
-const store = createStore(todolist);
+import rootReducer from "./reducers/reducers";
+const store = createStore(rootReducer);
 
 import TodoApp from "./components/pages/TodoApp";
 

@@ -1,17 +1,15 @@
 import { combineReducers } from "redux";
 import { ADD_TODO, CHANGE_VALUE } from "../actions/actions";
 
-const TODOS = {
+const INITIAL_STATE = {
   todos: [],
   value: "",
 };
 
-function todo(state = TODOS, action) {
+function todo(state = INITIAL_STATE, action) {
   switch (action.type) {
     case ADD_TODO:
-      // return Object.assign({}, state, [...state.todos, action.value]);
-      console.log([...state.todos, action.value]);
-      return [...state.todos, action.value];
+      return { ...state, todos: [...state.todos, action.value], value: INITIAL_STATE.value };
     case CHANGE_VALUE:
       return Object.assign({}, state, { value: action.value });
     default:
@@ -19,8 +17,8 @@ function todo(state = TODOS, action) {
   }
 }
 
-const todolist = combineReducers({
+const rootReducer = combineReducers({
   todo,
 });
 
-export default todolist;
+export default rootReducer;

@@ -9,7 +9,9 @@ const TODOS = {
 function todo(state = TODOS, action) {
   switch (action.type) {
     case ADD_TODO:
-      return Object.assign({}, state, [...state.todos, action.value]);
+      // return Object.assign({}, state, [...state.todos, action.value]);
+      console.log([...state.todos, action.value]);
+      return [...state.todos, action.value];
     case CHANGE_VALUE:
       return Object.assign({}, state, { value: action.value });
     default:

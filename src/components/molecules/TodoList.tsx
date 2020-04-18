@@ -1,6 +1,7 @@
 import * as React from "react";
 
 const TodoList = ({ todos }) => {
+  console.log(todos); // ADDでundefinedになる
   return (
     <ul>
       {todos.map((todo, index) => (

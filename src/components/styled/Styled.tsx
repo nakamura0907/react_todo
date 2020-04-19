@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
+import * as Base from "./BaseStyled";
+
 export const BtnStyled = styled.button`
   border: 0;
+  border-radius: 0.25rem;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
   box-sizing: border-box;
   padding: 11px;
@@ -43,11 +46,13 @@ export const ListItemStyled = styled(LFlexList)`
 `;
 
 export const ListPStyled = styled.p`
-  width: 100%;
-  text-align: left;
   -ms-overflow-style: none;
+  font-size: 1.2rem;
+  font-weight: 300;
   overflow: scroll;
   scrollbar-width: none;
+  text-align: left;
+  width: 100%;
   &::-webkit-scrollbar {
     display: none;
   }

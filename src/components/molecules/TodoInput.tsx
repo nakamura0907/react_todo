@@ -12,10 +12,10 @@ interface Props {
 }
 
 const TodoInput: React.FC<Props> = ({ value, onChange, onClick, text }) => {
-  const handleChange = (e) => {
+  const handleChange = (e): void => {
     onChange(e.target.value);
   };
-  const handleClick = () => {
+  const handleClick = (): void => {
     onClick(value);
   };
   return (

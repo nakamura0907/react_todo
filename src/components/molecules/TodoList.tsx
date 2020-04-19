@@ -3,7 +3,12 @@ import * as React from "react";
 import { ListItemStyled, IStyled, ListPStyled } from "../styled/Styled";
 import Btn from "../atoms/Btn";
 
-const TodoList = ({ todos, text }) => {
+interface Props {
+  todos: string[];
+  text: string;
+}
+
+const TodoList: React.FC<Props> = ({ todos, text }) => {
   return (
     <ul style={{ margin: "20px 24px 0 24px" }}>
       {todos.map((todo, index) => (

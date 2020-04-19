@@ -6,11 +6,14 @@ const INITIAL_STATE = {
   value: "",
 };
 
-function todo(state = INITIAL_STATE, action) {
+function todo(state = INITIAL_STATE, action): object {
   switch (action.type) {
     case CHANGE_VALUE:
       return Object.assign({}, state, { value: action.value });
     case ADD_TODO:
+      if (!action.value) {
+        return state;
+      }
       return { ...state, todos: [...state.todos, action.value], value: INITIAL_STATE.value };
     default:
       return state;

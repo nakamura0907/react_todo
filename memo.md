@@ -5,8 +5,6 @@
 
 ### 疑問
 - Listコンポーネント内のBtnコンポーネントと、Todoコンポーネント内のBtnコンポーネントそれぞれに違うスタイルを割り当てる方法
-- ReduxのReducers内で、state.〇〇とaction.〇〇どちらを?
 - Todoリストをオブジェクト形式でどのように管理するのか
     - 実装方法も
-- Redux+TypeScript
-- 5:17 Warningなどの二つ目の数字（17）の意味
+- mapStateToPropsとmapDispatchToProps、中の関数のの返り値

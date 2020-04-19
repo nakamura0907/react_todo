@@ -10,7 +10,7 @@ const store = createStore(rootReducer);
 import TodoApp from "./components/pages/TodoApp";
 
 class App extends React.Component {
-  render() {
+  render(): object {
     return (
       <>
         <TodoApp />

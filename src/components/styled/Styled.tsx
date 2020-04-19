@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import * as Base from "./BaseStyled";
-
 export const BtnStyled = styled.button`
   border: 0;
   border-radius: 0.25rem;

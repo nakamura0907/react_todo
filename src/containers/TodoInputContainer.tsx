@@ -5,7 +5,7 @@ import TodoInput from "../components/molecules/TodoInput";
 const mapStateToProps = (state) => {
   return {
     value: state.todo.value,
-    text: "ADD!",
+    btnText: "ADD!",
   };
 };
 

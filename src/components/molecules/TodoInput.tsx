@@ -8,10 +8,10 @@ interface Props {
   value: string;
   onChange: Function;
   onClick: Function;
-  text: string;
+  btnText: string;
 }
 
-const TodoInput: React.FC<Props> = ({ value, onChange, onClick, text }) => {
+const TodoInput: React.FC<Props> = ({ value, onChange, onClick, btnText }) => {
   const handleChange = (e): void => {
     onChange(e.target.value);
   };
@@ -22,7 +22,7 @@ const TodoInput: React.FC<Props> = ({ value, onChange, onClick, text }) => {
     <>
       <LFlex style={{ padding: "0 24px" }}>
         <Form value={value} onChangeFunction={handleChange} />
-        <Btn onClickFunction={handleClick} text={text} />
+        <Btn onClickFunction={handleClick} text={btnText} />
       </LFlex>
     </>
   );

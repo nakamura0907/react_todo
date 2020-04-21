@@ -9,7 +9,8 @@
     1. npm run build
 
 ### Technology
-    - Webpack:
+    - Webpack:webpack4を利用してReactなどをインストールしています。
     - TypeScript:
     - React:
     - eslint+prettier:
+    - Redux:

@@ -6,7 +6,8 @@
 
 ### Installation
     1. npm install
-    1. npm run build
+    1. npm run start
+    1. localhostにアクセス
 
 ### Technology
     - Webpack:webpack4を利用してReactなどをインストールしています。

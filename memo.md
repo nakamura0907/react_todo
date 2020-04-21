@@ -1,5 +1,4 @@
 ### 課題
-- Atomにeslintとprettierのパッケージを
 - react-helmet
-- redux-dev-tool
 - redux-actions
+- redux-devtools(tsのエラーが発生)

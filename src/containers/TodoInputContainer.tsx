@@ -1,11 +1,10 @@
 import { connect } from "react-redux";
-import { changeValue, addTodo } from "../actions/actions";
+import { changeValue, addTodo } from "../modules/todoReducer";
 import TodoInput from "../components/molecules/TodoInput";
 
 const mapStateToProps = (state) => {
   return {
     value: state.todo.value,
-    btnText: "ADD!",
   };
 };
 

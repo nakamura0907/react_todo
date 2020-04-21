@@ -1,6 +1,16 @@
-import { combineReducers } from "redux";
-import { ADD_TODO, CHANGE_VALUE } from "../actions/actions";
+// actions
+const ADD_TODO = "ADD_TODO";
+const CHANGE_VALUE = "CHANGE_VALUE";
 
+export function addTodo(value): object {
+  return { type: ADD_TODO, value };
+}
+
+export function changeValue(value): object {
+  return { type: CHANGE_VALUE, value };
+}
+
+// reducer
 const INITIAL_STATE = {
   todos: [],
   value: "",
@@ -20,8 +30,4 @@ function todo(state = INITIAL_STATE, action): object {
   }
 }
 
-const rootReducer = combineReducers({
-  todo,
-});
-
-export default rootReducer;
+export default todo;

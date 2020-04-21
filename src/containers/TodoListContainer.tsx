@@ -4,7 +4,6 @@ import TodoList from "../components/molecules/TodoList";
 const mapStateToProps = (state) => {
   return {
     todos: state.todo.todos,
-    btnText: "remove",
   };
 };
 

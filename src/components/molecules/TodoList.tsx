@@ -4,14 +4,13 @@ import TodoListItem from "./TodoListItem";
 
 interface Props {
   todos: string[];
-  btnText: string;
 }
 
-const TodoList: React.FC<Props> = ({ todos, btnText }) => {
+const TodoList: React.FC<Props> = ({ todos }) => {
   return (
     <ul style={{ margin: "20px 24px 0 24px" }}>
       {todos.map((todo, index) => (
-        <TodoListItem listItem={todo} btnText={btnText} key={index} />
+        <TodoListItem listItem={todo} btnText="remove" key={index} />
       ))}
     </ul>
   );

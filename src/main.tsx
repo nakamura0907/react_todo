@@ -3,9 +3,14 @@ import * as ReactDOM from "react-dom";
 import "./sass/main.sass";
 import { Provider } from "react-redux";
 
-import { createStore } from "redux";
+import { createStore, compose } from "redux";
 import rootReducer from "./modules/rootReducer";
-const store = createStore(rootReducer);
+const store = createStore(
+  rootReducer,
+  compose(
+    process.env.NODE_ENV === "development" && window.devToolsExtension ? window.devToolsExtension() : (f): void => f
+  )
+);
 
 import TodoApp from "./components/pages/TodoApp";
 import Header from "./components/pages/Header";

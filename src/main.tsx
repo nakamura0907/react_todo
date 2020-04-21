@@ -8,12 +8,16 @@ import rootReducer from "./modules/rootReducer";
 const store = createStore(rootReducer);
 
 import TodoApp from "./components/pages/TodoApp";
+import Header from "./components/pages/Header";
+import Footer from "./components/pages/Footer";
 
 class App extends React.Component {
   render(): object {
     return (
       <>
+        <Header />
         <TodoApp />
+        <Footer />
       </>
     );
   }

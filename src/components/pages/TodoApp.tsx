@@ -5,10 +5,10 @@ import TodoListContainer from "../../containers/TodoListContainer";
 
 const TodoApp: React.FC = () => {
   return (
-    <>
+    <main>
       <TodoInputContainer />
       <TodoListContainer />
-    </>
+    </main>
   );
 };
 

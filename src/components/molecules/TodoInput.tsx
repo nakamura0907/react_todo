@@ -1,6 +1,6 @@
 import * as React from "react";
+import styled from "styled-components";
 
-import { LFlex } from "../styled/Styled";
 import Form from "../atoms/Form";
 import Btn from "../atoms/Btn";
 
@@ -28,3 +28,9 @@ const TodoInput: React.FC<Props> = ({ value, onChange, onClick }) => {
 };
 
 export default TodoInput;
+
+const LFlex = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

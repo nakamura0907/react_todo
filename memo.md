@@ -1,9 +1,5 @@
 ### 課題
 - Atomにeslintとprettierのパッケージを
-- webpack-dev-serverを使うべき
-- styledをコンポーネント内に書くのもあり
-- HTMLタグはいじらずにjsxで
-    - headerやfooterなど。
-    - react-helmet
+- react-helmet
 - redux-dev-tool
 - redux-actions

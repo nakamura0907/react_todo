@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint ./src/**/**.tsx --fix",
     "build": "webpack",
-    "watch": "webpack -w"
+    "watch": "webpack -w",
+    "start": "webpack-dev-server --hot --inline --watch-content-base --open chrome"
   },
   "keywords": [],
   "author": "",

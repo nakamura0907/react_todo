@@ -1,6 +1,6 @@
 import * as React from "react";
+import styled from "styled-components";
 
-import { ListItemStyled, IStyled, ListPStyled } from "../styled/Styled";
 import Btn from "../atoms/Btn";
 
 interface Props {
@@ -19,3 +19,29 @@ const TodoListItem: React.FC<Props> = ({ listItem, btnText }) => {
 };
 
 export default TodoListItem;
+
+const IStyled = styled.i`
+  margin-right: 10px;
+  font-size: 32px;
+`;
+
+const ListItemStyled = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  width: 100%;
+`;
+
+const ListPStyled = styled.p`
+  -ms-overflow-style: none;
+  font-size: 1.2rem;
+  font-weight: 300;
+  overflow: scroll;
+  scrollbar-width: none;
+  text-align: left;
+  width: 100%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;

@@ -39,3 +39,9 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("app")
 );
+
+declare global {
+  interface Window {
+    devToolsExtension: Function;
+  }
+}

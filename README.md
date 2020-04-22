@@ -11,7 +11,9 @@
 
 ### Technology
     - Webpack:webpack4を利用してReactなどをインストールしています。
-    - TypeScript:
-    - React:
-    - eslint+prettier:
-    - Redux:
+    - TypeScript:静的型付けを行っています。
+    - React:Atomic Designを意識しています。
+    - Redux:Ducksに従っています。
+
+### GithubPages
+https://nakamura0907.github.io/react_todo/public/

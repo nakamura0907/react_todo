@@ -13,7 +13,7 @@ const TodoListItem: React.FC<Props> = ({ listItem, btnText }) => {
     <ListItemStyled>
       <IStyled className="far fa-square" />
       <ListPStyled>{listItem}</ListPStyled>
-      <Btn onClickFunction text={btnText} />
+      <Btn onClickFunction text={btnText} background="red" color="white" />
     </ListItemStyled>
   );
 };

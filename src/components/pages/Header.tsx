@@ -1,11 +1,18 @@
 import * as React from "react";
+
 import styled from "styled-components";
 
-const Header: React.FC = () => {
+interface Props {
+  text: string;
+}
+
+const Header: React.FC<Props> = ({ text }) => {
   return (
-    <HeaderStyled>
-      <HeaderTitleStyled>TodoList</HeaderTitleStyled>
-    </HeaderStyled>
+    <>
+      <HeaderStyled>
+        <HeaderTitleStyled>{text}</HeaderTitleStyled>
+      </HeaderStyled>
+    </>
   );
 };
 

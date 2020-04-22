@@ -21,7 +21,7 @@ const TodoInput: React.FC<Props> = ({ value, onChange, onClick }) => {
     <>
       <LFlex style={{ padding: "0 24px" }}>
         <Form value={value} onChangeFunction={handleChange} />
-        <Btn onClickFunction={handleClick} text="ADD!" />
+        <Btn onClickFunction={handleClick} text="ADD!" background="green" color="white" />
       </LFlex>
     </>
   );

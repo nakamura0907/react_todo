@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import "./sass/main.sass";
 import { Provider } from "react-redux";
 
 import { createStore, compose } from "redux";
@@ -12,15 +11,21 @@ const store = createStore(
   )
 );
 
-import TodoApp from "./components/pages/TodoApp";
+import Head from "./components/pages/Head";
 import Header from "./components/pages/Header";
+import TodoApp from "./components/pages/TodoApp";
 import Footer from "./components/pages/Footer";
 
 class App extends React.Component {
   render(): object {
     return (
       <>
-        <Header />
+        <Head
+          title="React.js成果物"
+          description="React.jsで作成した成果物を紹介します。"
+          keywords="React React.js Todoリスト"
+        />
+        <Header text="TodoList" />
         <TodoApp />
         <Footer />
       </>

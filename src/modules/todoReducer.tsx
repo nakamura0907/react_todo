@@ -1,14 +1,10 @@
+import { createActions, handleActions } from "redux-actions";
+
 // actions
-const ADD_TODO = "ADD_TODO";
-const CHANGE_VALUE = "CHANGE_VALUE";
-
-export function addTodo(value): object {
-  return { type: ADD_TODO, value };
-}
-
-export function changeValue(value): object {
-  return { type: CHANGE_VALUE, value };
-}
+export const Actions = createActions({
+  ADD_TODO: (value) => value,
+  CHANGE_VALUE: (value) => value,
+});
 
 // reducer
 const INITIAL_STATE = {
@@ -16,18 +12,19 @@ const INITIAL_STATE = {
   value: "",
 };
 
-function todo(state = INITIAL_STATE, action): object {
-  switch (action.type) {
-    case CHANGE_VALUE:
-      return Object.assign({}, state, { value: action.value });
-    case ADD_TODO:
-      if (!action.value) {
-        return state;
-      }
-      return { ...state, todos: [...state.todos, action.value], value: INITIAL_STATE.value };
-    default:
-      return state;
-  }
-}
+const todo = handleActions(
+  {
+    [Actions.changeValue]: (state, action) => ({
+      ...state,
+      value: action.payload,
+    }),
+    [Actions.addTodo]: (state, action) => ({
+      ...state,
+      todos: [...state.todos, action.payload],
+      value: INITIAL_STATE.value,
+    }),
+  },
+  INITIAL_STATE
+);
 
 export default todo;

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { changeValue, addTodo } from "../modules/todoReducer";
+import { Actions } from "../modules/todoReducer";
 import TodoInput from "../components/molecules/TodoInput";
 
 const mapStateToProps = (state) => {
@@ -9,8 +9,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onChange: (value) => dispatch(changeValue(value)),
-  onClick: (value) => dispatch(addTodo(value)),
+  onChange: (value) => dispatch(Actions.changeValue(value)),
+  onClick: (value) => dispatch(Actions.addTodo(value)),
 });
 
 const TodoInputContainer = connect(mapStateToProps, mapDispatchToProps)(TodoInput);

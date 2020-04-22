@@ -35,10 +35,10 @@ const Head: React.FC<Props> = ({ title, description, keywords }) => {
               ul{
                   list-style-type: none;
               }
-              .is-active {
+              .is-completed {
                   opacity: .5;
               }
-              .is-active p {
+              .is-completed p {
                   background: orange;
                   text-decoration: line-through;
                }

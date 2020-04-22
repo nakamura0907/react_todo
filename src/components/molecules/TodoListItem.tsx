@@ -6,14 +6,24 @@ import Btn from "../atoms/Btn";
 interface Props {
   listItem: string;
   btnText: string;
+  removeTodoFunction: Function;
+  completedTodoFunction: Function;
+  id: number;
+  flag: boolean;
 }
 
-const TodoListItem: React.FC<Props> = ({ listItem, btnText }) => {
+const TodoListItem: React.FC<Props> = ({ listItem, btnText, removeTodoFunction, completedTodoFunction, id, flag }) => {
+  const handleClickRemove = (id): void => {
+    removeTodoFunction(id);
+  };
+  const handleClickCompleted = (): void => {
+    completedTodoFunction();
+  };
   return (
-    <ListItemStyled>
-      <IStyled className="far fa-square" />
+    <ListItemStyled className={flag ? "" : "is-completed"}>
+      <IStyled onClick={handleClickCompleted} className={"far " + (flag ? "fa-square" : "fa-check-square")} />
       <ListPStyled>{listItem}</ListPStyled>
-      <Btn onClickFunction text={btnText} background="red" color="white" />
+      <Btn onClickFunction={(): void => handleClickRemove(id)} text={btnText} background="red" color="white" />
     </ListItemStyled>
   );
 };

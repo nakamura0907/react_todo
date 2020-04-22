@@ -1,3 +1,5 @@
 ### 課題
-- redux-actions
-- redux-devtools(tsのエラーが発生)
+- redux-devtools(エラー)
+
+
+todos: ["test", "test2", "test3"]

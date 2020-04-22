@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { Actions } from "../modules/todoReducer";
 import TodoList from "../components/molecules/TodoList";
 
 const mapStateToProps = (state) => {
@@ -7,7 +8,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  onClick: (id) => dispatch(Actions.removeTodo(id)),
+});
 
 const TodoListContainer = connect(mapStateToProps, mapDispatchToProps)(TodoList);
 

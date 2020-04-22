@@ -6,14 +6,19 @@ import Btn from "../atoms/Btn";
 interface Props {
   listItem: string;
   btnText: string;
+  onClickFunction: Function;
+  id: number;
 }
 
-const TodoListItem: React.FC<Props> = ({ listItem, btnText }) => {
+const TodoListItem: React.FC<Props> = ({ listItem, btnText, onClickFunction, id }) => {
+  const handleClick = (id): void => {
+    onClickFunction(id);
+  };
   return (
     <ListItemStyled>
       <IStyled className="far fa-square" />
       <ListPStyled>{listItem}</ListPStyled>
-      <Btn onClickFunction text={btnText} background="red" color="white" />
+      <Btn onClickFunction={(): void => handleClick(id)} text={btnText} background="red" color="white" />
     </ListItemStyled>
   );
 };

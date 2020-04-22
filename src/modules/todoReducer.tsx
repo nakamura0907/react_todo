@@ -4,6 +4,7 @@ import { createActions, handleActions } from "redux-actions";
 export const Actions = createActions({
   ADD_TODO: (value) => value,
   CHANGE_VALUE: (value) => value,
+  REMOVE_TODO: (id) => id,
 });
 
 // reducer
@@ -22,6 +23,10 @@ const todo = handleActions(
       ...state,
       todos: [...state.todos, action.payload],
       value: INITIAL_STATE.value,
+    }),
+    [Actions.removeTodo]: (state, action) => ({
+      ...state,
+      todos: [...state.todos.slice(0, action.payload), ...state.todos.slice(action.payload + 1)],
     }),
   },
   INITIAL_STATE

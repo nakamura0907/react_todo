@@ -5,13 +5,12 @@ import TodoList from "../components/molecules/TodoList";
 const mapStateToProps = (state) => {
   return {
     todos: state.todo.todos,
-    flag: state.todo.flag,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   removeTodoFunction: (id) => dispatch(Actions.removeTodo(id)),
-  completedTodoFunction: () => dispatch(Actions.completedTodo()),
+  completedTodoFunction: (uuid) => dispatch(Actions.completedTodo(uuid)),
 });
 
 const TodoListContainer = connect(mapStateToProps, mapDispatchToProps)(TodoList);

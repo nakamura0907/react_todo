@@ -2,4 +2,5 @@
 - redux-devtools(エラー)
 
 
-todos: ["test", "test2", "test3"]
+### サンプル
+- 練習用

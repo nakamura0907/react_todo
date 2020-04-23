@@ -1,73 +1,68 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const path = require('path');
+const path = require("path");
 
 const MODE = "development";
 // const MODE = "production";
 const enabledSourceMap = MODE === "development";
 
 module.exports = {
-    mode: MODE,
-    entry: './src/main.tsx',
-    output: {
-        path: path.join(__dirname, 'public'),
-        filename: "bundle.js"
-    },
-    module: {
-        rules: [
-            {
-                enforce: "pre",
-                test: /\.tsx$/,
-                exclude: /node_modules/,
-                loader: "eslint-loader",
-                options: {fix: true}
+  mode: MODE,
+  entry: "./src/index.tsx",
+  output: {
+    path: path.join(__dirname, "public"),
+    filename: "bundle.js",
+  },
+  module: {
+    rules: [
+      {
+        enforce: "pre",
+        test: /\.tsx$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader",
+        options: { fix: true },
+      },
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+      },
+      {
+        test: [/\.sass/, /\.scss/],
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              url: false,
+              sourceMap: enabledSourceMap,
+              importLoaders: 2,
             },
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: enabledSourceMap,
             },
-            {
-                test: [
-                    /\.sass/,
-                    /\.scss/
-                ],
-                use: [
-                    "style-loader",
-                    {
-                        loader: "css-loader",
-                        options: {
-                            url: false,
-                            sourceMap: enabledSourceMap,
-                            importLoaders: 2
-                        }
-                    },
-                    {
-                        loader: "sass-loader",
-                        options: {
-                            sourceMap: enabledSourceMap
-                        }
-                    },
-                ]
-            }, // css
-            {
-                test: /\.html$/,
-                use: [
-                    {
-                        loader: "html-loader",
-                        options: {minimize: true}
-                    }
-                ]
-            }, // html
-        ]
-    },
-    resolve: {
-        extensions: [
-            '.tsx', '.ts', '.js', '.json'
+          },
         ],
-    },
-    plugins: [
-        new HtmlWebPackPlugin({
-            template: "./src/index.html",
-            filename: "./index.html"
-        })
-    ]
+      }, // css
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+            options: { minimize: true },
+          },
+        ],
+      }, // html
+    ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js", ".json"],
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html",
+    }),
+  ],
 };

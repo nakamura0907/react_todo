@@ -1,20 +1,18 @@
 import { createActions, handleActions } from "redux-actions";
+import { v4 as uuidv4 } from "uuid";
 
 // actions
-export const Actions = createActions(
-  {
-    ADD_TODO: (value) => value,
-    CHANGE_VALUE: (value) => value,
-    REMOVE_TODO: (id) => id,
-  },
-  "COMPLETED_TODO"
-);
+export const Actions = createActions({
+  ADD_TODO: (value) => value,
+  CHANGE_VALUE: (value) => value,
+  REMOVE_TODO: (id) => id,
+  COMPLETED_TODO: (uuid) => uuid,
+});
 
 // reducer
 const INITIAL_STATE = {
   todos: [],
   value: "",
-  flag: true,
 };
 
 const todo = handleActions(
@@ -25,16 +23,19 @@ const todo = handleActions(
     }),
     [Actions.addTodo]: (state, action) => ({
       ...state,
-      todos: [...state.todos, action.payload],
+      todos: [...state.todos, { id: uuidv4(), value: action.payload, isCompleted: true }],
       value: INITIAL_STATE.value,
     }),
     [Actions.removeTodo]: (state, action) => ({
       ...state,
       todos: [...state.todos.slice(0, action.payload), ...state.todos.slice(action.payload + 1)],
     }),
-    [Actions.completedTodo]: (state) => ({
+    [Actions.completedTodo]: (state, action) => ({
       ...state,
-      flag: !state.flag,
+      todos: state.todos.map((todo) => ({
+        ...todo,
+        isCompleted: action.payload === todo.id ? !todo.isCompleted : todo.isCompleted,
+      })),
     }),
   },
   INITIAL_STATE

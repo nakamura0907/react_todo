@@ -9,8 +9,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  removeTodoFunction: (index) => dispatch(Actions.removeTodo(index)),
-  completedTodoFunction: (id) => dispatch(Actions.completedTodo(id)),
+  removeTodoFunction: (index): Record<string, number> => dispatch(Actions.removeTodo(index)),
+  completedTodoFunction: (id): Record<string, string> => dispatch(Actions.completedTodo(id)),
 });
 
 const TodoListContainer = connect(mapStateToProps, mapDispatchToProps)(TodoList);

@@ -8,8 +8,8 @@ interface Props {
   btnText: string;
   removeTodoFunction: Function;
   completedTodoFunction: Function;
-  id: number;
-  uuid: string;
+  index: number;
+  id: string;
   isCompleted: boolean;
 }
 
@@ -18,24 +18,24 @@ const TodoListItem: React.FC<Props> = ({
   btnText,
   removeTodoFunction,
   completedTodoFunction,
+  index,
   id,
-  uuid,
   isCompleted,
 }) => {
-  const handleClickRemove = (id): void => {
-    removeTodoFunction(id);
+  const handleClickRemove = (index): void => {
+    removeTodoFunction(index);
   };
-  const handleClickCompleted = (uuid): void => {
-    completedTodoFunction(uuid);
+  const handleClickCompleted = (id): void => {
+    completedTodoFunction(id);
   };
   return (
     <ListItemStyled className={isCompleted ? "" : "is-completed"}>
       <IStyled
-        onClick={(): void => handleClickCompleted(uuid)}
+        onClick={(): void => handleClickCompleted(id)}
         className={"far " + (isCompleted ? "fa-square" : "fa-check-square")}
       />
       <ListPStyled>{listItem}</ListPStyled>
-      <Btn onClickFunction={(): void => handleClickRemove(id)} text={btnText} background="red" color="white" />
+      <Btn onClickFunction={(): void => handleClickRemove(index)} text={btnText} background="red" color="white" />
     </ListItemStyled>
   );
 };

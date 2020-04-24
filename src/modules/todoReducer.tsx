@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 export const Actions = createActions({
   ADD_TODO: (value) => value,
   CHANGE_VALUE: (value) => value,
-  REMOVE_TODO: (id) => id,
-  COMPLETED_TODO: (uuid) => uuid,
+  REMOVE_TODO: (index) => index,
+  COMPLETED_TODO: (id) => id,
 });
 
 // reducer

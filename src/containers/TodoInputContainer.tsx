@@ -9,8 +9,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onChange: (value) => dispatch(Actions.changeValue(value)),
-  onClick: (value) => dispatch(Actions.addTodo(value)),
+  onChange: (value): Record<string, string> => dispatch(Actions.changeValue(value)),
+  onClick: (value): Record<string, string> => dispatch(Actions.addTodo(value)),
 });
 
 const TodoInputContainer = connect(mapStateToProps, mapDispatchToProps)(TodoInput);

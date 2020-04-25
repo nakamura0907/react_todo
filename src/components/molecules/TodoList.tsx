@@ -22,7 +22,6 @@ const TodoList: React.FC<Props> = ({ todos, removeTodoFunction, completedTodoFun
   const handleClickCompleted = (id): void => {
     completedTodoFunction(id);
   };
-  console.log(todos);
   return (
     <TodoListStyled>
       {todos.map((todo, index) => (

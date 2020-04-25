@@ -1,4 +1,5 @@
-import * as todo from "../src/modules/todoReducer";
+import { Actions } from "../src/modules/todoReducer";
+import rootReducer from "../src/modules/rootReducer";
 
 describe("todoReducer", () => {
   // actions-test
@@ -9,24 +10,38 @@ describe("todoReducer", () => {
       type: "ADD_TODO",
       payload: text,
     };
-    expect(todo.Actions.addTodo(text)).toEqual(expectedAction);
+    expect(Actions.addTodo(text)).toEqual(expectedAction);
     expectedAction = {
       type: "CHANGE_VALUE",
       payload: text,
     };
-    expect(todo.Actions.changeValue(text)).toEqual(expectedAction);
+    expect(Actions.changeValue(text)).toEqual(expectedAction);
     expectedAction = {
       type: "REMOVE_TODO",
       payload: text,
     };
-    expect(todo.Actions.removeTodo(text)).toEqual(expectedAction);
+    expect(Actions.removeTodo(text)).toEqual(expectedAction);
     expectedAction = {
       type: "COMPLETED_TODO",
       payload: text,
     };
-    expect(todo.Actions.completedTodo(text)).toEqual(expectedAction);
+    expect(Actions.completedTodo(text)).toEqual(expectedAction);
   });
 
   // reducers-test
-  it("reducers", () => {});
+  it("reducers", () => {
+    expect(rootReducer(undefined, {})).toEqual({
+      todo: {
+        todos: [],
+        value: "",
+      },
+    });
+
+    expect(rootReducer(undefined, {})).toEqual({
+      todo: {
+        todos: [],
+        value: "",
+      },
+    });
+  });
 });

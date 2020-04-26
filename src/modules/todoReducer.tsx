@@ -12,7 +12,7 @@ export const Actions = createActions({
 // reducer
 const INITIAL_STATE = {
   todos: [],
-  value: "",
+  // value: "",
 };
 
 const todo = handleActions(
@@ -24,7 +24,7 @@ const todo = handleActions(
     [Actions.addTodo]: (state, action) => ({
       ...state,
       todos: [...state.todos, { id: uuidv4(), value: action.payload, isCompleted: true }],
-      value: INITIAL_STATE.value,
+      // value: INITIAL_STATE.value,
     }),
     [Actions.removeTodo]: (state, action) => ({
       ...state,

@@ -21,7 +21,7 @@ const TodoInput: React.FC<Props> = ({ input, name, type, meta: { touched, error 
     <>
       {touched && error && <span style={{ color: "red" }}>{error}</span>}
       <LFlex style={{ padding: "0 24px" }}>
-        <FormStyled {...input} name={name} type={type} />
+        <FormStyled {...input} name={name} type={type} placeholder="Please enter the Text." />
         <Btn onClickFunction={onClick} text="ADD!" background="green" color="white" />
       </LFlex>
     </>

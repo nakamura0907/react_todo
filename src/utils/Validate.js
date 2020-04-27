@@ -1,5 +1,5 @@
 const ErrorMessages = {
-  required: "何か入力してください。",
+  required: "必須項目です。",
 };
 
 const Regex = {};

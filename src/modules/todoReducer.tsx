@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 // actions
 export const Actions = createActions({
   ADD_TODO: (value) => value,
-  CHANGE_VALUE: (value) => value,
   REMOVE_TODO: (index) => index,
   COMPLETED_TODO: (id) => id,
 });
@@ -17,10 +16,6 @@ const INITIAL_STATE = {
 
 const todo = handleActions(
   {
-    [Actions.changeValue]: (state, action) => ({
-      ...state,
-      value: action.payload,
-    }),
     [Actions.addTodo]: (state, action) => ({
       ...state,
       todos: [...state.todos, { id: uuidv4(), value: action.payload, isCompleted: true }],

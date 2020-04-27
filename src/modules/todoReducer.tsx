@@ -18,7 +18,7 @@ const todo = handleActions(
   {
     [Actions.addTodo]: (state, action) => ({
       ...state,
-      todos: [...state.todos, { id: uuidv4(), value: action.payload, isCompleted: true }],
+      todos: [...state.todos, { id: uuidv4(), value: action.payload, isCompleted: false }],
       // value: INITIAL_STATE.value,
     }),
     [Actions.removeTodo]: (state, action) => ({

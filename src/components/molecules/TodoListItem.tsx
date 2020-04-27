@@ -1,4 +1,5 @@
 import * as React from "react";
+import classNames from "classnames";
 import styled from "styled-components";
 
 import Btn from "../atoms/Btn";
@@ -22,6 +23,10 @@ const TodoListItem: React.FC<Props> = ({
   id,
   isCompleted,
 }) => {
+  const iconClass = classNames("far", {
+    "fa-square": !isCompleted,
+    "fa-check-square": isCompleted,
+  });
   const handleClickRemove = (index): void => {
     removeTodoFunction(index);
   };
@@ -29,11 +34,8 @@ const TodoListItem: React.FC<Props> = ({
     completedTodoFunction(id);
   };
   return (
-    <ListItemStyled className={isCompleted ? "" : "is-completed"}>
-      <IStyled
-        onClick={(): void => handleClickCompleted(id)}
-        className={"far " + (isCompleted ? "fa-square" : "fa-check-square")}
-      />
+    <ListItemStyled className={classNames({ "is-completed": isCompleted })}>
+      <IStyled onClick={(): void => handleClickCompleted(id)} className={iconClass} />
       <ListPStyled>{listItem}</ListPStyled>
       <Btn onClickFunction={(): void => handleClickRemove(index)} text={btnText} background="red" color="white" />
     </ListItemStyled>

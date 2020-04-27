@@ -18,6 +18,8 @@
         - styled-components
         - react-helmet
         - redux-actions
+        - redux-form
+        - classnames
 
 ### GithubPages
 https://nakamura0907.github.io/react_todo/public/

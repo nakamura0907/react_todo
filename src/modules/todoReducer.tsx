@@ -6,6 +6,7 @@ export const Actions = createActions({
   ADD_TODO: (value) => ({ id: uuidv4(), value: value, isCompleted: false }),
   REMOVE_TODO: (index) => ({ index: index }),
   COMPLETED_TODO: (id) => ({ id: id }),
+  UPDATE_TODO: (id, value) => ({ id: id, value: value }),
 });
 
 // reducer
@@ -28,6 +29,13 @@ const todo = handleActions(
       todos: state.todos.map((todo) => ({
         ...todo,
         isCompleted: action.payload.id === todo.id ? !todo.isCompleted : todo.isCompleted,
+      })),
+    }),
+    [Actions.updateTodo]: (state, action) => ({
+      ...state,
+      todos: state.todos.map((todo) => ({
+        ...todo,
+        value: action.payload.id === todo.id ? action.payload.value : todo.value,
       })),
     }),
   },

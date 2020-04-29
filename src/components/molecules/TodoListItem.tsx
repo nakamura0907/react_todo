@@ -11,14 +11,22 @@ interface Todo {
 }
 
 interface Props {
-  btnText: string;
   completedTodoFunction: Function;
   index: number;
   removeTodoFunction: Function;
   todo: Todo;
+  updateTodoFunction: Function;
+  value: string;
 }
 
-const TodoListItem: React.FC<Props> = ({ btnText, completedTodoFunction, index, removeTodoFunction, todo }) => {
+const TodoListItem: React.FC<Props> = ({
+  completedTodoFunction,
+  index,
+  removeTodoFunction,
+  todo,
+  updateTodoFunction,
+  value,
+}) => {
   const iconClass = classNames("far", {
     "fa-square": !todo.isCompleted,
     "fa-check-square": todo.isCompleted,
@@ -29,11 +37,17 @@ const TodoListItem: React.FC<Props> = ({ btnText, completedTodoFunction, index, 
   const handleClickCompleted = (): void => {
     completedTodoFunction(todo.id);
   };
+  const handleClickUpdate = (): void => {
+    if (value) {
+      updateTodoFunction(todo.id, value);
+    }
+  };
   return (
     <ListItemStyled className={classNames({ "is-completed": todo.isCompleted })}>
       <IStyled onClick={handleClickCompleted} className={iconClass} />
       <ListPStyled>{todo.value}</ListPStyled>
-      <Btn onClickFunction={handleClickRemove} text={btnText} background="red" color="white" />
+      <Btn color="black" background="yellow" text="update" onClickFunction={handleClickUpdate} />
+      <Btn color="white" background="red" text="remove" onClickFunction={handleClickRemove} />
     </ListItemStyled>
   );
 };

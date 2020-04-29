@@ -13,19 +13,22 @@ interface Props {
   completedTodoFunction: Function;
   removeTodoFunction: Function;
   todos: TodosObject[];
+  updateTodoFunction: Function;
+  value: string;
 }
 
-const TodoList: React.FC<Props> = ({ completedTodoFunction, removeTodoFunction, todos }) => {
+const TodoList: React.FC<Props> = ({ completedTodoFunction, removeTodoFunction, todos, updateTodoFunction, value }) => {
   return (
     <TodoListStyled>
       {todos.map((todo, index) => (
         <TodoListItem
-          btnText="remove"
           completedTodoFunction={completedTodoFunction}
           index={index}
           key={index}
           removeTodoFunction={removeTodoFunction}
           todo={todo}
+          updateTodoFunction={updateTodoFunction}
+          value={value}
         />
       ))}
     </TodoListStyled>

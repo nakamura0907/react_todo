@@ -8,18 +8,20 @@ import * as Validate from "../utils/Validate";
 import TodoInput from "../components/molecules/TodoInput";
 
 interface Props {
-  value: any;
   onClick: Function;
   reset: Function;
+  value: any;
 }
 
-const TodoInputContainer: React.FC<Props> = ({ value, onClick, reset }) => {
+const TodoInputContainer: React.FC<Props> = ({ onClick, reset, value }) => {
   const handleClick = (): void => {
-    onClick(value.values.todoFormText);
-    reset();
+    if (value.values.todoForm) {
+      onClick(value.values.todoForm);
+      reset();
+    }
   };
   return (
-    <Field name="todoFormText" type="text" validate={[Validate.required]} onClick={handleClick} component={TodoInput} />
+    <Field name="todoForm" type="text" validate={[Validate.required]} onClick={handleClick} component={TodoInput} />
   );
 };
 

@@ -21,9 +21,9 @@ class App extends React.Component {
     return (
       <>
         <Head
-          title="React.js成果物"
           description="React.jsで作成した成果物を紹介します。"
           keywords="React React.js Todoリスト"
+          title="React.js成果物"
         />
         <Header text="TodoList" />
         <TodoApp />

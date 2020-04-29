@@ -4,36 +4,28 @@ import styled from "styled-components";
 import TodoListItem from "./TodoListItem";
 
 interface TodosObject {
-  value: string;
-  isCompleted: boolean;
   id: string;
+  isCompleted: boolean;
+  value: string;
 }
 
 interface Props {
-  todos: TodosObject[];
-  removeTodoFunction: Function;
   completedTodoFunction: Function;
+  removeTodoFunction: Function;
+  todos: TodosObject[];
 }
 
-const TodoList: React.FC<Props> = ({ todos, removeTodoFunction, completedTodoFunction }) => {
-  const handleClickRemove = (index): void => {
-    removeTodoFunction(index);
-  };
-  const handleClickCompleted = (id): void => {
-    completedTodoFunction(id);
-  };
+const TodoList: React.FC<Props> = ({ completedTodoFunction, removeTodoFunction, todos }) => {
   return (
     <TodoListStyled>
       {todos.map((todo, index) => (
         <TodoListItem
-          listItem={todo.value}
           btnText="remove"
-          removeTodoFunction={handleClickRemove}
-          completedTodoFunction={handleClickCompleted}
+          completedTodoFunction={completedTodoFunction}
           index={index}
-          id={todo.id}
-          isCompleted={todo.isCompleted}
           key={index}
+          removeTodoFunction={removeTodoFunction}
+          todo={todo}
         />
       ))}
     </TodoListStyled>

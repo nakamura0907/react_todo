@@ -2,12 +2,12 @@ import * as React from "react";
 import { Helmet } from "react-helmet";
 
 interface Props {
-  title: string;
   description: string;
   keywords: string;
+  title: string;
 }
 
-const Head: React.FC<Props> = ({ title, description, keywords }) => {
+const Head: React.FC<Props> = ({ description, keywords, title }) => {
   return (
     <Helmet>
       <meta charSet="utf-8" />

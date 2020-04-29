@@ -4,40 +4,36 @@ import styled from "styled-components";
 
 import Btn from "../atoms/Btn";
 
-interface Props {
-  listItem: string;
-  btnText: string;
-  removeTodoFunction: Function;
-  completedTodoFunction: Function;
-  index: number;
+interface Todo {
   id: string;
   isCompleted: boolean;
+  value: string;
 }
 
-const TodoListItem: React.FC<Props> = ({
-  listItem,
-  btnText,
-  removeTodoFunction,
-  completedTodoFunction,
-  index,
-  id,
-  isCompleted,
-}) => {
+interface Props {
+  btnText: string;
+  completedTodoFunction: Function;
+  index: number;
+  removeTodoFunction: Function;
+  todo: Todo;
+}
+
+const TodoListItem: React.FC<Props> = ({ btnText, completedTodoFunction, index, removeTodoFunction, todo }) => {
   const iconClass = classNames("far", {
-    "fa-square": !isCompleted,
-    "fa-check-square": isCompleted,
+    "fa-square": !todo.isCompleted,
+    "fa-check-square": todo.isCompleted,
   });
-  const handleClickRemove = (index): void => {
+  const handleClickRemove = (): void => {
     removeTodoFunction(index);
   };
-  const handleClickCompleted = (id): void => {
-    completedTodoFunction(id);
+  const handleClickCompleted = (): void => {
+    completedTodoFunction(todo.id);
   };
   return (
-    <ListItemStyled className={classNames({ "is-completed": isCompleted })}>
-      <IStyled onClick={(): void => handleClickCompleted(id)} className={iconClass} />
-      <ListPStyled>{listItem}</ListPStyled>
-      <Btn onClickFunction={(): void => handleClickRemove(index)} text={btnText} background="red" color="white" />
+    <ListItemStyled className={classNames({ "is-completed": todo.isCompleted })}>
+      <IStyled onClick={handleClickCompleted} className={iconClass} />
+      <ListPStyled>{todo.value}</ListPStyled>
+      <Btn onClickFunction={handleClickRemove} text={btnText} background="red" color="white" />
     </ListItemStyled>
   );
 };

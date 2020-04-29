@@ -4,25 +4,25 @@ import styled from "styled-components";
 import Btn from "../atoms/Btn";
 
 interface Meta {
-  touched: boolean;
   error: undefined;
+  touched: boolean;
 }
 
 interface Props {
   input: object;
-  name: undefined;
-  type: string;
   meta: Meta;
+  name: undefined;
   onClick: Function;
+  type: string;
 }
 
-const TodoInput: React.FC<Props> = ({ input, name, type, meta: { touched, error }, onClick }) => {
+const TodoInput: React.FC<Props> = ({ input, meta: { error, touched }, name, onClick, type }) => {
   return (
     <>
       {touched && error && <span style={{ color: "red" }}>{error}</span>}
       <LFlex style={{ padding: "0 24px" }}>
-        <FormStyled {...input} name={name} type={type} placeholder="Please enter the Text." />
-        <Btn onClickFunction={onClick} text="ADD!" background="green" color="white" />
+        <FormStyled {...input} name={name} type={type} placeholder="テキストを入力してください。" />
+        <Btn color="white" background="green" text="ADD!" onClickFunction={onClick} />
       </LFlex>
     </>
   );

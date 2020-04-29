@@ -2,16 +2,16 @@ import * as React from "react";
 import styled from "styled-components";
 
 interface Props {
-  text: string;
-  onClickFunction: Function;
   background: string;
   color: string;
+  onClickFunction: Function;
+  text: string;
 }
 
-const Btn: React.FC<Props> = (props) => {
+const Btn: React.FC<Props> = ({ background, color, onClickFunction, text }) => {
   return (
-    <BtnStyled onClick={props.onClickFunction} background={props.background} color={props.color}>
-      {props.text}
+    <BtnStyled color={color} background={background} onClick={onClickFunction}>
+      {text}
     </BtnStyled>
   );
 };
@@ -19,8 +19,8 @@ const Btn: React.FC<Props> = (props) => {
 export default Btn;
 
 const BtnStyled = styled.button`
-  background: ${(props): void => props.background};
-  color: ${(props): void => props.color};
+  background: ${(props): string => props.background};
+  color: ${(props): string => props.color};
   border: 0;
   border-radius: 0.25rem;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);

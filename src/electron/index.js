@@ -8,7 +8,7 @@ const rootPath = `${ROOT_PATH}/public/index.html`;
 app.on("ready", (e) => {
   const windSetting = { window: 800, height: 600 };
   const mainWindow = new BrowserWindow(windSetting);
-  mainWindow.openDevTools();
+  // mainWindow.openDevTools();
   mainWindow.loadURL(rootPath);
 });
 

@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { createGlobalStyle } from "styled-components";
 
 import { createStore, compose } from "redux";
 import rootReducer from "./modules/rootReducer";
@@ -25,6 +26,7 @@ class App extends React.Component {
           keywords="React React.js Todoリスト"
           title="React.js成果物"
         />
+        <GlobalStyle />
         <Header text="TodoList" />
         <TodoApp />
         <Footer />
@@ -32,6 +34,32 @@ class App extends React.Component {
     );
   }
 }
+
+const GlobalStyle = createGlobalStyle`
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    text-align: center;
+    font-family: proximanova, Gidole-Regular, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Segoe UI", Meiryo, sans-serif;
+}
+ul{
+    list-style-type: none;
+}
+.is-completed {
+    opacity: .5;
+}
+.is-completed p {
+    background: orange;
+    text-decoration: line-through;
+ }
+`;
 
 ReactDOM.render(
   <Provider store={store}>

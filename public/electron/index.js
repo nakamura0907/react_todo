@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\nconst ROOT_PATH = \"file://\" + path__WEBPACK_IMPORTED_MODULE_1___default.a.resolve(\"\");\n\nconst rootPath = `${ROOT_PATH}/public/index.html`;\n\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].on(\"ready\", (e) => {\n  const windSetting = { window: 800, height: 600 };\n  const mainWindow = new electron__WEBPACK_IMPORTED_MODULE_0__[\"BrowserWindow\"](windSetting);\n  mainWindow.openDevTools();\n  mainWindow.loadURL(rootPath);\n});\n\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].on(\"window-all-closed\", () => {\n  if (process.platform !== \"darwin\") {\n    electron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].quit();\n  }\n});\n\n\n//# sourceURL=webpack:///./src/electron/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);\n\n\n// import path from \"path\";\n// const ROOT_PATH = \"file://\" + path.resolve(\"\");\n// const rootPath = `${ROOT_PATH}/public/index.html`;\n\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].on(\"ready\", (e) => {\n  const windSetting = { window: 800, height: 600 };\n  const mainWindow = new electron__WEBPACK_IMPORTED_MODULE_0__[\"BrowserWindow\"](windSetting);\n  mainWindow.loadFile(\"public/index.html\");\n});\n\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].on(\"window-all-closed\", () => {\n  if (process.platform !== \"darwin\") {\n    electron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].quit();\n  }\n});\n\n\n//# sourceURL=webpack:///./src/electron/index.js?");
 
 /***/ }),
 
@@ -106,17 +106,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var elec
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"electron\");\n\n//# sourceURL=webpack:///external_%22electron%22?");
-
-/***/ }),
-
-/***/ "path":
-/*!***********************!*\
-  !*** external "path" ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"path\");\n\n//# sourceURL=webpack:///external_%22path%22?");
 
 /***/ })
 

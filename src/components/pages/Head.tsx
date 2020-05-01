@@ -18,31 +18,6 @@ const Head: React.FC<Props> = ({ description, keywords, title }) => {
       <meta name="keywords" content={keywords} />
       <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet" />
       <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700" rel="stylesheet" />
-      <style>{`
-              #app {
-                  display: flex;
-                  flex-direction: column;
-                  min-height: 100vh;
-              }
-              * {
-                  margin: 0;
-                  padding: 0;
-              }
-              body {
-                  text-align: center;
-                  font-family: proximanova, Gidole-Regular, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Segoe UI", Meiryo, sans-serif;
-              }
-              ul{
-                  list-style-type: none;
-              }
-              .is-completed {
-                  opacity: .5;
-              }
-              .is-completed p {
-                  background: orange;
-                  text-decoration: line-through;
-               }
-          `}</style>
     </Helmet>
   );
 };

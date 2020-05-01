@@ -1,11 +1,12 @@
 ### 課題
-- styled-componentsのグローバル
+- ~~styled-componentsのグローバル~~
 - Github-ActionsとCI/CD
 - Todo編集機能の問題点
     - 操作方法が判断しにくい
     - 文字を0から入力する必要がある
 - electronに関するより詳しい勉強
     - パッケージングできない
+        - loadUrl()からloadFile()に変更で解決
 
 ### 改良予定(重要度順)
 - モバイルアプリ化

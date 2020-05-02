@@ -40,13 +40,13 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding: 0 24px;
 }
 * {
     margin: 0;
     padding: 0;
 }
 body {
-    text-align: center;
     font-family: proximanova, Gidole-Regular, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Segoe UI", Meiryo, sans-serif;
 }
 ul{

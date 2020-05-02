@@ -15,5 +15,5 @@ export default Footer;
 
 const FooterStyled = styled.footer`
   margin-top: auto;
-  padding-top: 20px;
+  padding-top: 50px;
 `;

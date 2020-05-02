@@ -38,7 +38,7 @@ const TodoList: React.FC<Props> = ({ completedTodoFunction, removeTodoFunction, 
 export default TodoList;
 
 const TodoListStyled = styled.ul`
-  margin: 20px 24px 0 24px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;

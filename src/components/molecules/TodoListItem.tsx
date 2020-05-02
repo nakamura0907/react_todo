@@ -71,6 +71,7 @@ const ListPStyled = styled.p`
   -ms-overflow-style: none;
   font-size: 1.2rem;
   font-weight: 300;
+  margin-right: 20px;
   overflow: scroll;
   scrollbar-width: none;
   text-align: left;

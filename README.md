@@ -15,11 +15,12 @@
     - React:Atomic Designを意識しています。
     - Redux:Ducksに従っています。
     - Others
-        - styled-components
+        - classnames
+        - electron
         - react-helmet
         - redux-actions
         - redux-form
-        - classnames
+        - styled-components
 
 ### GithubPages
 https://nakamura0907.github.io/react_todo/public/

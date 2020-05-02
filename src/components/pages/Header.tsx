@@ -19,8 +19,9 @@ const Header: React.FC<Props> = ({ text }) => {
 export default Header;
 
 const HeaderStyled = styled.header`
+  color: #e85a61;
   font-size: 1.8rem;
-  margin: 15px 0 20px 0;
+  margin: 15px 0 50px 0;
 `;
 
 const HeaderTitleStyled = styled.h1`

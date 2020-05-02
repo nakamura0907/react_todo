@@ -20,7 +20,7 @@ const TodoInput: React.FC<Props> = ({ input, meta: { error, touched }, name, onC
   return (
     <>
       {touched && error && <span style={{ color: "red" }}>{error}</span>}
-      <LFlex style={{ padding: "0 24px" }}>
+      <LFlex>
         <FormStyled {...input} name={name} type={type} placeholder="テキストを入力してください。" />
         <Btn color="white" background="green" text="ADD!" onClickFunction={onClick} />
       </LFlex>

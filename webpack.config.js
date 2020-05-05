@@ -29,6 +29,14 @@ module.exports = [
           use: "ts-loader",
         },
         {
+          test: /.js?$/,
+          loader: "babel-loader",
+          exclude: "/node_modules/",
+          query: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+        {
           test: /\.html$/,
           use: [
             {

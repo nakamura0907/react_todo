@@ -56,7 +56,8 @@ app.on("ready", (e) => {
 
   const windSetting = { window: 800, height: 600 };
   const mainWindow = new BrowserWindow(windSetting);
-  mainWindow.loadFile("public/index.html");
+  mainWindow.loadFile("public/desktop/index.html");
+  mainWindow.webContents.openDevTools();
 });
 
 app.on("window-all-closed", () => {

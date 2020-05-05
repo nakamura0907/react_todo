@@ -3,7 +3,6 @@ import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
 import Btn from "../src/components/atoms/Btn";
-import Form from "../src/components/atoms/Form";
 
 let container = null;
 beforeEach(() => {
@@ -27,16 +26,9 @@ it("Btn", () => {
     render(<Btn text="remove" />, container);
   });
   expect(container.textContent).toBe("remove");
-});
 
-it("Form", () => {
-  // act(() => {
-  //   render(<Form value="" />, container);
-  // });
-  // expect(container.textContent).toBe("");
-  //
-  // act(() => {
-  //   render(<Form value="Jest" />, container);
-  // });
-  // expect(container.textContent).toBe("Jest");
+  act(() => {
+    render(<Btn text="update" />, container);
+  });
+  expect(container.textContent).toBe("update");
 });

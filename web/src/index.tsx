@@ -27,7 +27,7 @@ class App extends React.Component {
           title="React.js成果物"
         />
         <GlobalStyle />
-        <Header text="Web" />
+        <Header text="TodoList" />
         <TodoApp />
         <Footer />
       </>

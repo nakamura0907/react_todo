@@ -1,1 +1,1 @@
-require("./public/desktop/index.js");
+require("./public/desktop/electron.js");

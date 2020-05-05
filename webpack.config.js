@@ -7,20 +7,52 @@ const enabledSourceMap = MODE === "development";
 
 module.exports = [
   {
-    mode: MODE,
+    mode: "production",
     entry: {
-      main: "./src/electron/index.js",
+      main: "./desktop/src/electron/index.js",
     },
     output: {
-      path: path.join(__dirname, "public/electron"),
+      path: path.join(__dirname, "public/desktop"),
       filename: "index.js",
     },
-    module: {},
+    module: {
+      rules: [
+        {
+          enforce: "pre",
+          test: /\.tsx$/,
+          exclude: /node_modules/,
+          loader: "eslint-loader",
+          options: { fix: true },
+        },
+        {
+          test: /\.tsx?$/,
+          use: "ts-loader",
+        },
+        {
+          test: /\.html$/,
+          use: [
+            {
+              loader: "html-loader",
+              options: { minimize: true },
+            },
+          ],
+        },
+      ],
+    },
+    resolve: {
+      extensions: [".tsx", ".ts", ".js", ".json"],
+    },
     target: "electron-renderer",
-  },
+    plugins: [
+      new HtmlWebPackPlugin({
+        template: "./desktop/src/index.html",
+        filename: "./index.html",
+      }),
+    ],
+  }, // electron
   {
     mode: MODE,
-    entry: "./src/index.tsx",
+    entry: "./web/src/index.tsx",
     output: {
       path: path.join(__dirname, "public"),
       filename: "bundle.js",
@@ -39,26 +71,6 @@ module.exports = [
           use: "ts-loader",
         },
         {
-          test: [/\.sass/, /\.scss/],
-          use: [
-            "style-loader",
-            {
-              loader: "css-loader",
-              options: {
-                url: false,
-                sourceMap: enabledSourceMap,
-                importLoaders: 2,
-              },
-            },
-            {
-              loader: "sass-loader",
-              options: {
-                sourceMap: enabledSourceMap,
-              },
-            },
-          ],
-        }, // css
-        {
           test: /\.html$/,
           use: [
             {
@@ -66,7 +78,7 @@ module.exports = [
               options: { minimize: true },
             },
           ],
-        }, // html
+        },
       ],
     },
     resolve: {
@@ -74,7 +86,7 @@ module.exports = [
     },
     plugins: [
       new HtmlWebPackPlugin({
-        template: "./src/index.html",
+        template: "./web/src/index.html",
         filename: "./index.html",
       }),
     ],

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Actions } from "../modules/todoReducer";
 import { reduxForm } from "redux-form";
 
-import TodoInput from "../components/organism/TodoInput";
+import TodoInput from "../components/organisms/TodoInput";
 
 const mapStateToProps = (state) => ({
   value: state.form.todoForm,

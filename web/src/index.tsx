@@ -12,10 +12,10 @@ const store = createStore(
   )
 );
 
-import Head from "./components/pages/Head";
-import Header from "./components/pages/Header";
-import TodoApp from "./components/pages/TodoApp";
-import Footer from "./components/pages/Footer";
+import Head from "./components/templates/Head";
+import Header from "./components/templates/Header";
+import TodoApp from "./components/templates/TodoApp";
+import Footer from "./components/templates/Footer";
 
 class App extends React.Component {
   render(): object {

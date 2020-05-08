@@ -18,27 +18,22 @@ interface Props {
 }
 
 const TodoInput: React.FC<Props> = ({ onClick, input, name, type, meta: { touched, error } }) => {
-  if (!touched) {
-    return (
-      <>
-        <SpanStyled></SpanStyled>
-        <LFlex>
-          <Form input={input} name={name} type={type} placeholder="テキストを入力してください。" />
-          <Btn color="white" background="green" text="ADD!" onClickFunction={onClick} />
-        </LFlex>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <SpanStyled>{error}</SpanStyled>
-        <LFlex>
-          <Form input={input} name={name} type={type} placeholder="テキストを入力してください。" />
-          <Btn color="white" background="green" text="ADD!" onClickFunction={onClick} />
-        </LFlex>
-      </>
-    );
-  }
+  const ErrorMessage: React.FC = () => {
+    if (!touched) {
+      return <SpanStyled></SpanStyled>;
+    } else {
+      return <SpanStyled>{error}</SpanStyled>;
+    }
+  };
+  return (
+    <>
+      <ErrorMessage />
+      <LFlex>
+        <Form input={input} name={name} type={type} placeholder="テキストを入力してください。" />
+        <Btn color="white" background="green" text="ADD!" onClickFunction={onClick} />
+      </LFlex>
+    </>
+  );
 };
 
 const LFlex = styled.div`

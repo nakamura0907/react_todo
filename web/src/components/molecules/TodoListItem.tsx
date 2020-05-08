@@ -4,6 +4,7 @@ import classNames from "classnames";
 import styled from "styled-components";
 
 import Btn from "../atoms/Btn";
+import Form from "../atoms/Form";
 
 interface Todo {
   id: string;
@@ -65,7 +66,7 @@ const TodoListItem: React.FC<Props> = ({
     return (
       <ListItemStyled className={classNames({ "is-completed": todo.isCompleted })}>
         <IStyled onClick={handleClickCompleted} className={iconClass} />
-        <FormStyled name="todoListForm" type="text" component="input" />
+        <FormStyled name="todoListForm" type="text" component={Form} />
         <Btn color="black" background="yellow" text="update" onClickFunction={handleClickUpdate} />
         <Btn color="white" background="red" text="remove" onClickFunction={handleClickRemove} />
       </ListItemStyled>

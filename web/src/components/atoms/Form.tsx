@@ -1,7 +1,14 @@
 import * as React from "react";
 import styled from "styled-components";
 
-const Form = ({ input, name, type, placeholder }) => {
+interface Props {
+  input: object;
+  name: string;
+  type: string;
+  placeholder: string;
+}
+
+const Form: React.FC<Props> = ({ input, name, type, placeholder }) => {
   return <FormStyled {...input} name={name} type={type} placeholder={placeholder} />;
 };
 

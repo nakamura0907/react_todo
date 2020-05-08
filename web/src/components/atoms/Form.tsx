@@ -4,8 +4,8 @@ import styled from "styled-components";
 interface Props {
   input: object;
   name: string;
-  type: string;
   placeholder: string;
+  type: string;
 }
 
 const Form: React.FC<Props> = ({ input, name, type, placeholder }) => {

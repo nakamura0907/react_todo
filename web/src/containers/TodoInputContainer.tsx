@@ -1,6 +1,5 @@
-import * as React from "react";
-import { connect } from "react-redux";
 import { Actions } from "../modules/todoReducer";
+import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
 
 import TodoInput from "../components/organisms/TodoInput";

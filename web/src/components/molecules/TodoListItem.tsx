@@ -3,7 +3,7 @@ import { Field } from "redux-form";
 import classNames from "classnames";
 import styled from "styled-components";
 
-import Btn from "../atoms/Btn";
+import BtnIcon from "../atoms/BtnIcon";
 import Form from "../atoms/Form";
 
 interface Todo {
@@ -14,6 +14,7 @@ interface Todo {
 }
 
 interface Props {
+  chancelUpdateFunction: Function;
   changeTextformFunction: Function;
   completedTodoFunction: Function;
   index: number;
@@ -25,6 +26,7 @@ interface Props {
 }
 
 const TodoListItem: React.FC<Props> = ({
+  chancelUpdateFunction,
   changeTextformFunction,
   completedTodoFunction,
   index,
@@ -38,12 +40,18 @@ const TodoListItem: React.FC<Props> = ({
     "fa-square": !todo.isCompleted,
     "fa-check-square": todo.isCompleted,
   });
+  const handleClickChancel = (): void => {
+    chancelUpdateFunction();
+    reset();
+  };
   const handleClickChangeTextform = (): void => {
     reset(); // 更新前に他p要素をクリックすると、値継承をしてしまう対策
     changeTextformFunction(todo.id);
   };
   const handleClickRemove = (): void => {
-    removeTodoFunction(index);
+    if (window.confirm("「" + todo.value + "」 を削除しますか?")) {
+      removeTodoFunction(index);
+    }
   };
   const handleClickCompleted = (): void => {
     completedTodoFunction(todo.id);
@@ -59,7 +67,7 @@ const TodoListItem: React.FC<Props> = ({
       <ListItemStyled className={classNames({ "is-completed": todo.isCompleted })}>
         <IStyled onClick={handleClickCompleted} className={iconClass} />
         <ListPStyled onClick={handleClickChangeTextform}>{todo.value}</ListPStyled>
-        <Btn color="white" background="red" text="remove" onClickFunction={handleClickRemove} />
+        <BtnIcon color="white" background="red" iconClass="far fa-trash-alt" onClickFunction={handleClickRemove} />
       </ListItemStyled>
     );
   } else {
@@ -67,8 +75,13 @@ const TodoListItem: React.FC<Props> = ({
       <ListItemStyled className={classNames({ "is-completed": todo.isCompleted })}>
         <IStyled onClick={handleClickCompleted} className={iconClass} />
         <FormStyled name="todoListForm" type="text" component={Form} />
-        <Btn color="black" background="yellow" text="update" onClickFunction={handleClickUpdate} />
-        <Btn color="white" background="red" text="remove" onClickFunction={handleClickRemove} />
+        <BtnIcon
+          color="white"
+          background="green"
+          iconClass="far fa-caret-square-left"
+          onClickFunction={handleClickChancel}
+        />
+        <BtnIcon color="black" background="yellow" iconClass="far fa-edit" onClickFunction={handleClickUpdate} />
       </ListItemStyled>
     );
   }

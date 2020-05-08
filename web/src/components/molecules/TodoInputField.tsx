@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import Btn from "../atoms/Btn";
+import BtnIcon from "../atoms/BtnIcon";
 import Form from "../atoms/Form";
 
 interface Meta {
@@ -18,19 +18,12 @@ interface Props {
 }
 
 const TodoInput: React.FC<Props> = ({ onClick, input, name, type, meta: { touched, error } }) => {
-  const ErrorMessage: React.FC = () => {
-    if (!touched) {
-      return <SpanStyled></SpanStyled>;
-    } else {
-      return <SpanStyled>{error}</SpanStyled>;
-    }
-  };
   return (
     <>
-      <ErrorMessage />
+      <SpanStyled>{touched ? error : ""}</SpanStyled>
       <LFlex>
         <Form input={input} name={name} type={type} placeholder="テキストを入力してください。" />
-        <Btn color="white" background="green" text="ADD!" onClickFunction={onClick} />
+        <BtnIcon color="white" background="skyblue" iconClass="fas fa-plus" onClickFunction={onClick} />
       </LFlex>
     </>
   );

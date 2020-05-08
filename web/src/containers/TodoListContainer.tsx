@@ -1,7 +1,7 @@
+import { Actions } from "../modules/todoReducer";
 import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
-import { Actions } from "../modules/todoReducer";
-import TodoList from "../components/molecules/TodoList";
+import TodoList from "../components/organisms/TodoList";
 
 const mapStateToProps = (state) => {
   return {
@@ -15,6 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
   completedTodoFunction: (id): Record<string, string> => dispatch(Actions.completedTodo(id)),
   updateTodoFunction: (id, value): Record<string, string> => dispatch(Actions.updateTodo(id, value)),
   changeTextformFunction: (id): Record<string, string> => dispatch(Actions.changeTextform(id)),
+  chancelUpdateFunction: (): Record<string, void> => dispatch(Actions.chancelUpdate()),
 });
 
 const TodoListContainer = connect(

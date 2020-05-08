@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import TodoListItem from "./TodoListItem";
+import TodoListItem from "../molecules/TodoListItem";
 
 interface TodosObject {
   id: string;
@@ -11,6 +11,7 @@ interface TodosObject {
 }
 
 interface Props {
+  chancelUpdateFunction: Function;
   changeTextformFunction: Function;
   completedTodoFunction: Function;
   removeTodoFunction: Function;
@@ -21,6 +22,7 @@ interface Props {
 }
 
 const TodoList: React.FC<Props> = ({
+  chancelUpdateFunction,
   changeTextformFunction,
   completedTodoFunction,
   removeTodoFunction,
@@ -33,6 +35,7 @@ const TodoList: React.FC<Props> = ({
     <TodoListStyled>
       {todos.map((todo, index) => (
         <TodoListItem
+          chancelUpdateFunction={chancelUpdateFunction}
           changeTextformFunction={changeTextformFunction}
           completedTodoFunction={completedTodoFunction}
           index={index}

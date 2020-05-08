@@ -1,7 +1,7 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { Provider } from "react-redux";
 import { createGlobalStyle } from "styled-components";
+import { Provider } from "react-redux";
+import * as ReactDOM from "react-dom";
 
 import { createStore, compose } from "redux";
 import rootReducer from "./modules/rootReducer";

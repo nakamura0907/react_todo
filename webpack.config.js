@@ -1,5 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const BomPlugin = require("webpack-utf8-bom");
+// const BomPlugin = require("webpack-utf8-bom");
 const path = require("path");
 
 const MODE = "development";
@@ -16,7 +16,7 @@ module.exports = [
     },
     module: {},
     target: "electron-renderer",
-    plugins: [new BomPlugin(true)],
+    // plugins: [new BomPlugin(true)],
   }, // electron-electron
   {
     mode: "production",
@@ -57,7 +57,7 @@ module.exports = [
         template: "./desktop/src/index.html",
         filename: "./index.html",
       }),
-      new BomPlugin(true),
+      // new BomPlugin(true),
     ],
   }, // electron-index.js
   {
@@ -99,7 +99,7 @@ module.exports = [
         template: "./web/src/index.html",
         filename: "./index.html",
       }),
-      new BomPlugin(true),
+      // new BomPlugin(true),
     ],
   },
 ];

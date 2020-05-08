@@ -1,7 +1,7 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { Provider } from "react-redux";
 import { createGlobalStyle } from "styled-components";
+import { Provider } from "react-redux";
+import * as ReactDOM from "react-dom";
 
 import { createStore, compose } from "redux";
 import rootReducer from "./modules/rootReducer";
@@ -12,10 +12,10 @@ const store = createStore(
   )
 );
 
-import Head from "./components/pages/Head";
-import Header from "./components/pages/Header";
-import TodoApp from "./components/pages/TodoApp";
-import Footer from "./components/pages/Footer";
+import Head from "./components/templates/Head";
+import Header from "./components/templates/Header";
+import TodoApp from "./components/templates/TodoApp";
+import Footer from "./components/templates/Footer";
 
 class App extends React.Component {
   render(): object {

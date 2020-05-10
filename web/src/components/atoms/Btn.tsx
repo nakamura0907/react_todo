@@ -16,8 +16,6 @@ const Btn: React.FC<Props> = ({ background, color, onClickFunction, text }) => {
   );
 };
 
-export default Btn;
-
 const BtnStyled = styled.button`
   background: ${(props): string => props.background};
   color: ${(props): string => props.color};
@@ -26,7 +24,10 @@ const BtnStyled = styled.button`
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
   box-sizing: border-box;
   padding: 11px;
+  width: 65px;
   &:hover {
     box-shadow: 0 8px 7px 0 rgba(0, 0, 0, 0.11);
   }
 `;
+
+export default Btn;

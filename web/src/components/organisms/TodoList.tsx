@@ -32,7 +32,7 @@ const TodoList: React.FC<Props> = ({
   updateTodoFunction,
 }) => {
   return (
-    <TodoListStyled>
+    <List>
       {todos.map((todo, index) => (
         <TodoListItem
           chancelUpdateFunction={chancelUpdateFunction}
@@ -47,16 +47,16 @@ const TodoList: React.FC<Props> = ({
           updateTodoFunction={updateTodoFunction}
         />
       ))}
-    </TodoListStyled>
+    </List>
   );
 };
 
-export default TodoList;
-
-const TodoListStyled = styled.ul`
+const List = styled.ul`
   margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column-reverse;
 `;
+
+export default TodoList;

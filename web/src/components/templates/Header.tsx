@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import styled from "styled-components";
 
 interface Props {
@@ -10,13 +9,11 @@ const Header: React.FC<Props> = ({ text }) => {
   return (
     <>
       <HeaderStyled>
-        <HeaderTitleStyled>{text}</HeaderTitleStyled>
+        <Heading>{text}</Heading>
       </HeaderStyled>
     </>
   );
 };
-
-export default Header;
 
 const HeaderStyled = styled.header`
   color: #e85a61;
@@ -24,6 +21,8 @@ const HeaderStyled = styled.header`
   margin: 15px 0 50px 0;
 `;
 
-const HeaderTitleStyled = styled.h1`
+const Heading = styled.h1`
   font-family: "Amatic SC", cursive;
 `;
+
+export default Header;

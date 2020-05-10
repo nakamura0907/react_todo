@@ -3,6 +3,7 @@ import { Field } from "redux-form";
 import classNames from "classnames";
 import styled from "styled-components";
 
+import Btn from "../atoms/Btn";
 import BtnIcon from "../atoms/BtnIcon";
 import Form from "../atoms/Form";
 
@@ -64,47 +65,30 @@ const TodoListItem: React.FC<Props> = ({
   };
   if (!todo.isForm) {
     return (
-      <ListItemStyled className={classNames({ "is-completed": todo.isCompleted })}>
-        <IStyled onClick={handleClickCompleted} className={iconClass} />
-        <ListPStyled onClick={handleClickChangeTextform}>{todo.value}</ListPStyled>
+      <ListItem className={classNames({ "is-completed": todo.isCompleted })}>
+        <Icon onClick={handleClickCompleted} className={iconClass} />
+        <ListText onClick={handleClickChangeTextform}>{todo.value}</ListText>
         <BtnIcon color="white" background="red" iconClass="far fa-trash-alt" onClickFunction={handleClickRemove} />
-      </ListItemStyled>
+      </ListItem>
     );
   } else {
     return (
-      <ListItemStyled className={classNames({ "is-completed": todo.isCompleted })}>
-        <IStyled onClick={handleClickCompleted} className={iconClass} />
-        <FormStyled name="todoListForm" type="text" component={Form} />
-        <BtnIcon
-          color="white"
-          background="green"
-          iconClass="far fa-caret-square-left"
-          onClickFunction={handleClickChancel}
-        />
-        <BtnIcon color="black" background="yellow" iconClass="far fa-edit" onClickFunction={handleClickUpdate} />
-      </ListItemStyled>
+      <ListItem className={classNames({ "is-completed": todo.isCompleted })}>
+        <Icon onClick={handleClickCompleted} className={iconClass} />
+        <Field name="todoListForm" type="text" component={Form} />
+        <Btn color="red" background="#eff3f6" text="Cancel" onClickFunction={handleClickChancel} />
+        <BtnIcon color="black" background="#eff3f6" iconClass="far fa-edit" onClickFunction={handleClickUpdate} />
+      </ListItem>
     );
   }
 };
 
-export default TodoListItem;
-
-const FormStyled = styled(Field)`
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
-  box-sizing: border-box;
-  height: 36px;
-  width: 100%;
-  &:focus {
-    box-shadow: 0 8px 7px 0 rgba(17, 148, 246, 0.11);
-  }
-`;
-
-const IStyled = styled.i`
+const Icon = styled.i`
   margin-right: 10px;
   font-size: 36px;
 `;
 
-const ListItemStyled = styled.li`
+const ListItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,7 +96,7 @@ const ListItemStyled = styled.li`
   width: 100%;
 `;
 
-const ListPStyled = styled.p`
+const ListText = styled.p`
   -ms-overflow-style: none;
   font-size: 1.2rem;
   font-weight: 300;
@@ -120,8 +104,11 @@ const ListPStyled = styled.p`
   overflow: scroll;
   scrollbar-width: none;
   text-align: left;
+  white-space: nowrap;
   width: 100%;
   &::-webkit-scrollbar {
     display: none;
   }
 `;
+
+export default TodoListItem;

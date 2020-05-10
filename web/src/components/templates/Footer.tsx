@@ -4,21 +4,21 @@ import styled from "styled-components";
 const Footer: React.FC = () => {
   return (
     <FooterStyled>
-      <FooterSmallStyled>
+      <Copyright>
         &copy;ToDoList <time>2020/04/01</time>
-      </FooterSmallStyled>
+      </Copyright>
     </FooterStyled>
   );
 };
 
-export default Footer;
+const Copyright = styled.small`
+  font-size: 1.3rem;
+  font-family: "Amatic SC", cursive;
+`;
 
 const FooterStyled = styled.footer`
   margin-top: auto;
   padding-top: 50px;
 `;
 
-const FooterSmallStyled = styled.small`
-  font-size: 1.3rem;
-  font-family: "Amatic SC", cursive;
-`;
+export default Footer;

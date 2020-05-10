@@ -20,25 +20,25 @@ interface Props {
 const TodoInput: React.FC<Props> = ({ onClick, input, name, type, meta: { touched, error } }) => {
   return (
     <>
-      <SpanStyled>{touched ? error : ""}</SpanStyled>
+      <ErrorMessage>{touched ? error : ""}</ErrorMessage>
       <LFlex>
         <Form input={input} name={name} type={type} placeholder="テキストを入力してください。" />
-        <BtnIcon color="white" background="skyblue" iconClass="fas fa-plus" onClickFunction={onClick} />
+        <BtnIcon color="white" background="#28a745" iconClass="fas fa-plus" onClickFunction={onClick} />
       </LFlex>
     </>
   );
 };
 
+const ErrorMessage = styled.span`
+  color: red;
+  display: block;
+  min-height: 35px;
+`;
+
 const LFlex = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-const SpanStyled = styled.span`
-  color: red;
-  display: block;
-  min-height: 35px;
 `;
 
 export default TodoInput;

@@ -1,6 +1,7 @@
 import { Actions } from "../modules/todoReducer";
 import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
+
 import TodoList from "../components/organisms/TodoList";
 
 const mapStateToProps = (state) => {

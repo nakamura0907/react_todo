@@ -1,9 +1,9 @@
 import * as React from "react";
 import { createGlobalStyle } from "styled-components";
+import { createStore, compose } from "redux";
 import { Provider } from "react-redux";
 import * as ReactDOM from "react-dom";
 
-import { createStore, compose } from "redux";
 import rootReducer from "./modules/rootReducer";
 const store = createStore(
   rootReducer,
@@ -12,10 +12,10 @@ const store = createStore(
   )
 );
 
+import Footer from "./components/templates/Footer";
 import Head from "./components/templates/Head";
 import Header from "./components/templates/Header";
 import TodoApp from "./components/templates/TodoApp";
-import Footer from "./components/templates/Footer";
 
 class App extends React.Component {
   render(): object {

@@ -14,6 +14,7 @@ interface Props {
   chancelUpdateFunction: Function;
   changeTextformFunction: Function;
   completedTodoFunction: Function;
+  initialize: Function;
   removeTodoFunction: Function;
   reset: Function;
   todos: TodosObject[];
@@ -25,6 +26,7 @@ const TodoList: React.FC<Props> = ({
   chancelUpdateFunction,
   changeTextformFunction,
   completedTodoFunction,
+  initialize,
   removeTodoFunction,
   reset,
   todoListForm,
@@ -39,6 +41,7 @@ const TodoList: React.FC<Props> = ({
           changeTextformFunction={changeTextformFunction}
           completedTodoFunction={completedTodoFunction}
           index={index}
+          initialize={initialize}
           key={index}
           removeTodoFunction={removeTodoFunction}
           reset={reset}

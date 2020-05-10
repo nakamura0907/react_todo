@@ -19,6 +19,7 @@ interface Props {
   changeTextformFunction: Function;
   completedTodoFunction: Function;
   index: number;
+  initialize: Function;
   removeTodoFunction: Function;
   reset: Function;
   todo: Todo;
@@ -31,6 +32,7 @@ const TodoListItem: React.FC<Props> = ({
   changeTextformFunction,
   completedTodoFunction,
   index,
+  initialize,
   removeTodoFunction,
   reset,
   todo,
@@ -46,7 +48,7 @@ const TodoListItem: React.FC<Props> = ({
     reset();
   };
   const handleClickChangeTextform = (): void => {
-    reset(); // 更新前に他p要素をクリックすると、値継承をしてしまう対策
+    initialize({ todoListForm: todo.value });
     changeTextformFunction(todo.id);
   };
   const handleClickRemove = (): void => {

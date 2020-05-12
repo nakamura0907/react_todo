@@ -23,7 +23,7 @@ const InputField: React.FC<Props> = ({ onClick, input, name, type, meta: { touch
       <ErrorMessage>{touched ? error : ""}</ErrorMessage>
       <LFlex>
         <Input input={input} name={name} type={type} placeholder="テキストを入力してください。" />
-        <ButtonIcon color="white" background="#28a745" iconClass="fas fa-plus" onClickFunction={onClick} />
+        <ButtonIcon color="white" background="#28a745" iconClass="fas fa-plus" onClick={onClick} />
       </LFlex>
     </>
   );

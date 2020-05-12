@@ -4,8 +4,8 @@
   "description": "react_todo_app",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack-dev-server --hot --inline --watch-content-base --open chrome",
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --hot --inline --watch-content-base --open chrome --config webpack.dev.js",
     "test": "jest --watchAll",
     "android": "expo start --android",
     "electron": "electron .",
@@ -46,6 +46,7 @@
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^4.2.2",
     "webpack-utf8-bom": "^1.2.0"
   },
   "dependencies": {

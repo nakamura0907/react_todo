@@ -4,19 +4,17 @@ import styled from "styled-components";
 interface Props {
   background: string;
   color: string;
-  onClickFunction: Function;
-  text: string;
+  iconClass: string;
+  onClick: Function;
 }
 
-const Btn: React.FC<Props> = ({ background, color, onClickFunction, text }) => {
+const ButtonIcon: React.FC<Props> = ({ background, color, onClick, iconClass }) => {
   return (
-    <BtnStyled color={color} background={background} onClick={onClickFunction}>
-      {text}
+    <BtnStyled color={color} background={background} onClick={onClick}>
+      <i className={iconClass} style={{ fontSize: "1rem" }}></i>
     </BtnStyled>
   );
 };
-
-export default Btn;
 
 const BtnStyled = styled.button`
   background: ${(props): string => props.background};
@@ -26,7 +24,10 @@ const BtnStyled = styled.button`
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
   box-sizing: border-box;
   padding: 11px;
+  width: 65px;
   &:hover {
     box-shadow: 0 8px 7px 0 rgba(0, 0, 0, 0.11);
   }
 `;
+
+export default ButtonIcon;

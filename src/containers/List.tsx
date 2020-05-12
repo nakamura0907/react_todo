@@ -12,11 +12,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  removeTodoFunction: (index): Record<string, number> => dispatch(Actions.removeTodo(index)),
-  completedTodoFunction: (id): Record<string, string> => dispatch(Actions.completedTodo(id)),
-  updateTodoFunction: (id, value): Record<string, string> => dispatch(Actions.updateTodo(id, value)),
-  changeTextformFunction: (id): Record<string, string> => dispatch(Actions.changeTextform(id)),
-  chancelUpdateFunction: (): Record<string, void> => dispatch(Actions.chancelUpdate()),
+  removeTodo: (index): Record<string, number> => dispatch(Actions.removeTodo(index)),
+  completedTodo: (id): Record<string, string> => dispatch(Actions.completedTodo(id)),
+  updateTodo: (id, value): Record<string, string> => dispatch(Actions.updateTodo(id, value)),
+  changeTextform: (id): Record<string, string> => dispatch(Actions.changeTextform(id)),
+  chancelUpdate: (): Record<string, void> => dispatch(Actions.chancelUpdate()),
 });
 
 const List = connect(

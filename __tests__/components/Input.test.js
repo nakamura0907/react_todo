@@ -1,7 +1,7 @@
 import React from "react";
 import ReactTestUtils from "react-dom/test-utils";
 
-import Input from "../../web/src/components/atoms/Input";
+import Input from "../../src/components/atoms/Input";
 
 test("isInput", () => {
   const props = {

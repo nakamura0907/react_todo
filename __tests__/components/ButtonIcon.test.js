@@ -1,20 +1,18 @@
 import React from "react";
 import ReactTestUtils from "react-dom/test-utils";
 import ReactDOM from "react-dom";
-import { configure, mount } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });
+import { mount } from "enzyme";
 
-import BtnIcon from "../../web/src/components/atoms/BtnIcon";
+import ButtonIcon from "../../web/src/components/atoms/ButtonIcon";
 
-test("isBtnIcon", () => {
+test("isButtonIcon", () => {
   const props = {
     background: "blue",
     color: "white",
     iconClass: "far fa-check",
     onClickFunction: () => {},
   };
-  const element = <BtnIcon {...props} />;
+  const element = <ButtonIcon {...props} />;
   expect(ReactTestUtils.isElement(element)).toBe(true);
 });
 
@@ -25,7 +23,7 @@ test("onClickFunction", () => {
     iconClass: "far fa-check",
     onClickFunction: jest.fn(),
   };
-  const subject = mount(<BtnIcon {...props} />);
+  const subject = mount(<ButtonIcon {...props} />);
   subject.find("button").simulate("click");
 
   expect(props.onClickFunction).toBeCalled();

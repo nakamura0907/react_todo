@@ -3,9 +3,9 @@ import { Field } from "redux-form";
 import classNames from "classnames";
 import styled from "styled-components";
 
-import Btn from "../atoms/Btn";
-import BtnIcon from "../atoms/BtnIcon";
-import Form from "../atoms/Form";
+import Button from "../atoms/Button";
+import ButtonIcon from "../atoms/ButtonIcon";
+import Input from "../atoms/Input";
 
 interface Todo {
   id: string;
@@ -27,7 +27,7 @@ interface Props {
   updateTodoFunction: Function;
 }
 
-const TodoListItem: React.FC<Props> = ({
+const Item: React.FC<Props> = ({
   chancelUpdateFunction,
   changeTextformFunction,
   completedTodoFunction,
@@ -70,16 +70,16 @@ const TodoListItem: React.FC<Props> = ({
       <ListItem className={classNames({ "is-completed": todo.isCompleted })}>
         <Icon onClick={handleClickCompleted} className={iconClass} />
         <ListText onClick={handleClickChangeTextform}>{todo.value}</ListText>
-        <BtnIcon color="white" background="red" iconClass="far fa-trash-alt" onClickFunction={handleClickRemove} />
+        <ButtonIcon color="white" background="red" iconClass="far fa-trash-alt" onClickFunction={handleClickRemove} />
       </ListItem>
     );
   } else {
     return (
       <ListItem className={classNames({ "is-completed": todo.isCompleted })}>
         <Icon onClick={handleClickCompleted} className={iconClass} />
-        <Field name="todoListForm" type="text" component={Form} />
-        <Btn color="red" background="#eff3f6" text="Cancel" onClickFunction={handleClickChancel} />
-        <BtnIcon color="black" background="#eff3f6" iconClass="far fa-edit" onClickFunction={handleClickUpdate} />
+        <Field name="todoListForm" type="text" component={Input} />
+        <Button color="red" background="#eff3f6" text="Cancel" onClickFunction={handleClickChancel} />
+        <ButtonIcon color="black" background="#eff3f6" iconClass="far fa-edit" onClickFunction={handleClickUpdate} />
       </ListItem>
     );
   }
@@ -113,4 +113,4 @@ const ListText = styled.p`
   }
 `;
 
-export default TodoListItem;
+export default Item;

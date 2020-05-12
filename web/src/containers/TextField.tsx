@@ -1,8 +1,8 @@
-import { Actions } from "../modules/todoReducer";
+import { Actions } from "../modules/todo";
 import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
 
-import TodoInput from "../components/organisms/TodoInput";
+import TextFieldComponent from "../components/organisms/TextField";
 
 const mapStateToProps = (state) => ({
   value: state.form.todoForm,
@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => ({
   onClick: (value): Record<string, string> => dispatch(Actions.addTodo(value)),
 });
 
-const TodoInputContainer = connect(
+const TextField = connect(
   mapStateToProps,
   mapDispatchToProps
 )(
@@ -20,7 +20,7 @@ const TodoInputContainer = connect(
     form: "todoForm",
     enableReinitialize: true,
     initialValues: { todoForm: "" },
-  })(TodoInput)
+  })(TextFieldComponent)
 );
 
-export default TodoInputContainer;
+export default TextField;

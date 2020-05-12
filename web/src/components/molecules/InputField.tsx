@@ -1,8 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import BtnIcon from "../atoms/BtnIcon";
-import Form from "../atoms/Form";
+import ButtonIcon from "../atoms/ButtonIcon";
+import Input from "../atoms/Input";
 
 interface Meta {
   error: undefined;
@@ -17,13 +17,13 @@ interface Props {
   onClick: Function;
 }
 
-const TodoInput: React.FC<Props> = ({ onClick, input, name, type, meta: { touched, error } }) => {
+const InputField: React.FC<Props> = ({ onClick, input, name, type, meta: { touched, error } }) => {
   return (
     <>
       <ErrorMessage>{touched ? error : ""}</ErrorMessage>
       <LFlex>
-        <Form input={input} name={name} type={type} placeholder="テキストを入力してください。" />
-        <BtnIcon color="white" background="#28a745" iconClass="fas fa-plus" onClickFunction={onClick} />
+        <Input input={input} name={name} type={type} placeholder="テキストを入力してください。" />
+        <ButtonIcon color="white" background="#28a745" iconClass="fas fa-plus" onClickFunction={onClick} />
       </LFlex>
     </>
   );
@@ -41,4 +41,4 @@ const LFlex = styled.div`
   justify-content: center;
 `;
 
-export default TodoInput;
+export default InputField;

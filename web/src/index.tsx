@@ -4,9 +4,9 @@ import { createStore, compose } from "redux";
 import { Provider } from "react-redux";
 import * as ReactDOM from "react-dom";
 
-import rootReducer from "./modules/rootReducer";
+import reducers from "./modules";
 const store = createStore(
-  rootReducer,
+  reducers,
   compose(
     process.env.NODE_ENV === "development" && window.devToolsExtension ? window.devToolsExtension() : (f): void => f
   )
@@ -15,7 +15,7 @@ const store = createStore(
 import Footer from "./components/templates/Footer";
 import Head from "./components/templates/Head";
 import Header from "./components/templates/Header";
-import TodoApp from "./components/templates/TodoApp";
+import Main from "./components/templates/Main";
 
 class App extends React.Component {
   render(): object {
@@ -28,7 +28,7 @@ class App extends React.Component {
         />
         <GlobalStyle />
         <Header text="TodoList" />
-        <TodoApp />
+        <Main />
         <Footer />
       </>
     );

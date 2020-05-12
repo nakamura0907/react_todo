@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import TodoListItem from "../molecules/TodoListItem";
+import Item from "../molecules/Item";
 
 interface TodosObject {
   id: string;
@@ -22,7 +22,7 @@ interface Props {
   updateTodoFunction: Function;
 }
 
-const TodoList: React.FC<Props> = ({
+const List: React.FC<Props> = ({
   chancelUpdateFunction,
   changeTextformFunction,
   completedTodoFunction,
@@ -34,9 +34,9 @@ const TodoList: React.FC<Props> = ({
   updateTodoFunction,
 }) => {
   return (
-    <List>
+    <ListStyled>
       {todos.map((todo, index) => (
-        <TodoListItem
+        <Item
           chancelUpdateFunction={chancelUpdateFunction}
           changeTextformFunction={changeTextformFunction}
           completedTodoFunction={completedTodoFunction}
@@ -50,11 +50,11 @@ const TodoList: React.FC<Props> = ({
           updateTodoFunction={updateTodoFunction}
         />
       ))}
-    </List>
+    </ListStyled>
   );
 };
 
-const List = styled.ul`
+const ListStyled = styled.ul`
   margin-top: 20px;
   display: flex;
   align-items: center;
@@ -62,4 +62,4 @@ const List = styled.ul`
   flex-direction: column-reverse;
 `;
 
-export default TodoList;
+export default List;

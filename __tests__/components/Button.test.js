@@ -1,20 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import ReactTestUtils from "react-dom/test-utils";
-import { configure, mount } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });
+import { mount } from "enzyme";
 
-import Btn from "../../web/src/components/atoms/Btn";
+import Button from "../../web/src/components/atoms/Button";
 
-test("isBtn", () => {
+test("isButton", () => {
   const props = {
     background: "red",
     color: "white",
     text: "hoge",
     onClickFunction: () => {},
   };
-  const element = <Btn {...props} />;
+  const element = <Button {...props} />;
   expect(ReactTestUtils.isElement(element)).toBe(true);
 });
 
@@ -26,7 +24,7 @@ test("onClickFunction", () => {
     onClickFunction: jest.fn(),
   };
 
-  const subject = mount(<Btn {...props} />);
+  const subject = mount(<Button {...props} />);
   subject.find("button").simulate("click");
 
   expect(props.onClickFunction).toBeCalled();

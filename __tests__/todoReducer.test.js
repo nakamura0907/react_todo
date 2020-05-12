@@ -1,5 +1,5 @@
-import { Actions } from "../web/src/modules/todo";
-import reducers from "../web/src/modules";
+import { Actions } from "../src/modules/todo";
+import reducers from "../src/modules";
 
 // actions-test
 describe("todoReducer-Actions", () => {

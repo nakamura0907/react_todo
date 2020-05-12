@@ -3,7 +3,7 @@ import ReactTestUtils from "react-dom/test-utils";
 import ReactDOM from "react-dom";
 import { mount } from "enzyme";
 
-import ButtonIcon from "../../web/src/components/atoms/ButtonIcon";
+import ButtonIcon from "../../src/components/atoms/ButtonIcon";
 
 test("isButtonIcon", () => {
   const props = {

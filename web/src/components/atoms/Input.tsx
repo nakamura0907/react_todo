@@ -8,11 +8,11 @@ interface Props {
   type: string;
 }
 
-const Form: React.FC<Props> = ({ input, name, type, placeholder }) => {
-  return <FormStyled {...input} name={name} type={type} placeholder={placeholder} />;
+const Input: React.FC<Props> = ({ input, name, type, placeholder }) => {
+  return <InputStyled {...input} name={name} type={type} placeholder={placeholder} />;
 };
 
-const FormStyled = styled.input`
+const InputStyled = styled.input`
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
   box-sizing: border-box;
   height: 36px;
@@ -22,4 +22,4 @@ const FormStyled = styled.input`
   }
 `;
 
-export default Form;
+export default Input;

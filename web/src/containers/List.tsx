@@ -1,8 +1,8 @@
-import { Actions } from "../modules/todoReducer";
+import { Actions } from "../modules/todo";
 import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
 
-import TodoList from "../components/organisms/TodoList";
+import ListComponent from "../components/organisms/List";
 
 const mapStateToProps = (state) => {
   return {
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
   chancelUpdateFunction: (): Record<string, void> => dispatch(Actions.chancelUpdate()),
 });
 
-const TodoListContainer = connect(
+const List = connect(
   mapStateToProps,
   mapDispatchToProps
 )(
@@ -27,7 +27,7 @@ const TodoListContainer = connect(
     form: "todoListForm",
     enableReinitialize: true,
     initialValues: { todoListForm: "" },
-  })(TodoList)
+  })(ListComponent)
 );
 
-export default TodoListContainer;
+export default List;

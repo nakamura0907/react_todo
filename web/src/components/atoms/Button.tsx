@@ -4,14 +4,14 @@ import styled from "styled-components";
 interface Props {
   background: string;
   color: string;
-  iconClass: string;
   onClickFunction: Function;
+  text: string;
 }
 
-const BtnIcon: React.FC<Props> = ({ background, color, onClickFunction, iconClass }) => {
+const Button: React.FC<Props> = ({ background, color, onClickFunction, text }) => {
   return (
     <BtnStyled color={color} background={background} onClick={onClickFunction}>
-      <i className={iconClass} style={{ fontSize: "1rem" }}></i>
+      {text}
     </BtnStyled>
   );
 };
@@ -30,4 +30,4 @@ const BtnStyled = styled.button`
   }
 `;
 
-export default BtnIcon;
+export default Button;

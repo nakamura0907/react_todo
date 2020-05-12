@@ -4,13 +4,13 @@ import styled from "styled-components";
 interface Props {
   background: string;
   color: string;
-  onClickFunction: Function;
+  onClick: Function;
   text: string;
 }
 
-const Button: React.FC<Props> = ({ background, color, onClickFunction, text }) => {
+const Button: React.FC<Props> = ({ background, color, onClick, text }) => {
   return (
-    <BtnStyled color={color} background={background} onClick={onClickFunction}>
+    <BtnStyled color={color} background={background} onClick={onClick}>
       {text}
     </BtnStyled>
   );

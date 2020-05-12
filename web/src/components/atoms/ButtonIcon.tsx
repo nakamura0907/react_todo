@@ -5,12 +5,12 @@ interface Props {
   background: string;
   color: string;
   iconClass: string;
-  onClickFunction: Function;
+  onClick: Function;
 }
 
-const ButtonIcon: React.FC<Props> = ({ background, color, onClickFunction, iconClass }) => {
+const ButtonIcon: React.FC<Props> = ({ background, color, onClick, iconClass }) => {
   return (
-    <BtnStyled color={color} background={background} onClick={onClickFunction}>
+    <BtnStyled color={color} background={background} onClick={onClick}>
       <i className={iconClass} style={{ fontSize: "1rem" }}></i>
     </BtnStyled>
   );

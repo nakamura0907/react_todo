@@ -10,21 +10,21 @@ test("isButtonIcon", () => {
     background: "blue",
     color: "white",
     iconClass: "far fa-check",
-    onClickFunction: () => {},
+    onClick: () => {},
   };
   const element = <ButtonIcon {...props} />;
   expect(ReactTestUtils.isElement(element)).toBe(true);
 });
 
-test("onClickFunction", () => {
+test("onClick", () => {
   const props = {
     background: "blue",
     color: "white",
     iconClass: "far fa-check",
-    onClickFunction: jest.fn(),
+    onClick: jest.fn(),
   };
   const subject = mount(<ButtonIcon {...props} />);
   subject.find("button").simulate("click");
 
-  expect(props.onClickFunction).toBeCalled();
+  expect(props.onClick).toBeCalled();
 });

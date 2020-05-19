@@ -13,10 +13,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   removeTodo: (index): Record<string, number> => dispatch(Actions.removeTodo(index)),
-  completedTodo: (id): Record<string, string> => dispatch(Actions.completedTodo(id)),
+  completeTodo: (id): Record<string, string> => dispatch(Actions.completeTodo(id)),
   updateTodo: (id, value): Record<string, string> => dispatch(Actions.updateTodo(id, value)),
   changeTextform: (id): Record<string, string> => dispatch(Actions.changeTextform(id)),
-  chancelUpdate: (): Record<string, void> => dispatch(Actions.chancelUpdate()),
+  cancelUpdate: (): Record<string, void> => dispatch(Actions.cancelUpdate()),
 });
 
 const List = connect(

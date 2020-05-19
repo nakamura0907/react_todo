@@ -11,9 +11,9 @@ interface TodosObject {
 }
 
 interface Props {
-  chancelUpdate: Function;
+  cancelUpdate: Function;
   changeTextform: Function;
-  completedTodo: Function;
+  completeTodo: Function;
   initialize: Function;
   removeTodo: Function;
   reset: Function;
@@ -23,9 +23,9 @@ interface Props {
 }
 
 const List: React.FC<Props> = ({
-  chancelUpdate,
+  cancelUpdate,
   changeTextform,
-  completedTodo,
+  completeTodo,
   initialize,
   removeTodo,
   reset,
@@ -37,9 +37,9 @@ const List: React.FC<Props> = ({
     <ListStyled>
       {todos.map((todo, index) => (
         <Item
-          chancelUpdate={chancelUpdate}
+          cancelUpdate={cancelUpdate}
           changeTextform={changeTextform}
-          completedTodo={completedTodo}
+          completeTodo={completeTodo}
           index={index}
           initialize={initialize}
           key={index}

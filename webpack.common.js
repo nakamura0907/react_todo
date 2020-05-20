@@ -39,6 +39,12 @@ module.exports = [
       ],
     },
     resolve: {
+      alias: {
+        "@atom": path.resolve(__dirname, "src/components/atoms"),
+        "@component": path.resolve(__dirname, "src/components"),
+        "@container": path.resolve(__dirname, "src/containers"),
+        "@module": path.resolve(__dirname, "src/modules"),
+      },
       extensions: [".tsx", ".ts", ".js", ".json"],
     },
     plugins: [

@@ -1,23 +1,29 @@
 import { Actions } from "../src/modules/todo";
 import reducer from "../src/modules";
+import { v4 as uuidv4 } from "uuid";
+
+jest.mock("uuid");
 
 // actions-test
 describe("todoReducer-Actions", () => {
-  it("actions", () => {
-    const arg1 = "hoge";
-    const arg2 = "hoge2";
-    let expectedAction;
+  const arg1 = "hoge";
+  const arg2 = "hoge2";
+  let expectedAction;
+  uuidv4.mockImplementation(() => "testid");
 
-    // expectedAction = {
-    //   type: "ADD_TODO",
-    //   payload: {
-    //     id: arg1,
-    //     value: arg1,
-    //     isCompleted: false,
-    //     isForm: false,
-    //   },
-    // };
-    // expect(Actions.addTodo(arg1)).toEqual(expectedAction);
+  it("ADD_TODO", () => {
+    expectedAction = {
+      type: "ADD_TODO",
+      payload: {
+        id: "testid",
+        value: arg1,
+        isCompleted: false,
+        isForm: false,
+      },
+    };
+    expect(Actions.addTodo(arg1)).toEqual(expectedAction);
+  });
+  it("REMOVE_TODO", () => {
     expectedAction = {
       type: "REMOVE_TODO",
       payload: {
@@ -25,13 +31,17 @@ describe("todoReducer-Actions", () => {
       },
     };
     expect(Actions.removeTodo(arg1)).toEqual(expectedAction);
+  });
+  it("COMPLETE_TODO", () => {
     expectedAction = {
-      type: "COMPLETED_TODO",
+      type: "COMPLETE_TODO",
       payload: {
         id: arg1,
       },
     };
-    expect(Actions.completedTodo(arg1)).toEqual(expectedAction);
+    expect(Actions.completeTodo(arg1)).toEqual(expectedAction);
+  });
+  it("UPDATE_TODO", () => {
     expectedAction = {
       type: "UPDATE_TODO",
       payload: {
@@ -40,6 +50,8 @@ describe("todoReducer-Actions", () => {
       },
     };
     expect(Actions.updateTodo(arg1, arg2)).toEqual(expectedAction);
+  });
+  it("CHANGE_TEXTFORM", () => {
     expectedAction = {
       type: "CHANGE_TEXTFORM",
       payload: {
@@ -50,113 +62,159 @@ describe("todoReducer-Actions", () => {
   });
 });
 
-describe("todoReducer-reducers", () => {
-  const INITIAL_STATE = {
-    form: {},
-    todo: {
-      todos: [],
-    },
-  };
+const INITIAL_STATE = {
+  form: {},
+  todo: {
+    todos: [],
+  },
+};
 
+describe("todoReducer_INITIALIZE", () => {
   it("initialize", () => {
     expect(reducer(undefined, { type: null })).toEqual(INITIAL_STATE);
   });
+});
 
-  it("addTodo", () => {});
-
-  it("removeTodo", () => {});
-
-  it("completedTodo", () => {
-    expect(
-      reducer(
-        {
-          todo: {
-            todos: [
-              {
-                id: 1,
-                isCompleted: false,
-              },
-            ],
-          },
-        },
-        { type: "COMPLETED_TODO", payload: { id: 1 } }
-      )
-    ).toEqual({
+describe("addTodo", () => {
+  it("value = hoge", () => {
+    expect(reducer(undefined, { type: "ADD_TODO", payload: { value: "hoge" } })).toEqual({
       form: {},
-      todo: {
-        todos: [
-          {
-            id: 1,
-            isCompleted: true,
-          },
-        ],
-      },
+      todo: { todos: [{ value: "hoge" }] },
     });
+  });
 
+  it("value = fuga", () => {
+    expect(reducer(undefined, { type: "ADD_TODO", payload: { value: "fuga" } })).toEqual({
+      form: {},
+      todo: { todos: [{ value: "fuga" }] },
+    });
+  });
+});
+
+describe("completeTodo", () => {
+  it("true -> false", () => {
     expect(
       reducer(
         {
           todo: {
             todos: [
-              {
-                id: 1,
-                isCompleted: true,
-              },
+              { id: 1, isCompleted: true },
+              { id: 2, isCompleted: false },
+              { id: 3, isCompleted: true },
             ],
           },
         },
-        { type: "COMPLETED_TODO", payload: { id: 1 } }
+        { type: "COMPLETE_TODO", payload: { id: 1 } }
       )
     ).toEqual({
       form: {},
       todo: {
         todos: [
-          {
-            id: 1,
-            isCompleted: false,
-          },
+          { id: 1, isCompleted: false },
+          { id: 2, isCompleted: false },
+          { id: 3, isCompleted: true },
         ],
       },
     });
   });
 
-  it("updateTodo", () => {
+  describe("removeTodo", () => {
+    it("remove ID 1", () => {
+      expect(
+        reducer(
+          {
+            todo: {
+              todos: [
+                {
+                  id: 1,
+                  value: "hoge",
+                },
+                {
+                  id: 2,
+                  value: "fuga",
+                },
+                {
+                  id: 3,
+                  value: "piyo",
+                },
+              ],
+            },
+          },
+          { type: "REMOVE_TODO", payload: { id: 1 } }
+        )
+      ).toEqual({
+        form: {},
+        todo: {
+          todos: [
+            {
+              id: 1,
+              value: "fuga",
+            },
+            {
+              id: 2,
+              value: "piyo",
+            },
+          ],
+        },
+      });
+    });
+  });
+
+  it("false -> true", () => {
+    expect(
+      reducer({ todo: { todos: [{ id: 1, isCompleted: false }] } }, { type: "COMPLETE_TODO", payload: { id: 1 } })
+    ).toEqual({ form: {}, todo: { todos: [{ id: 1, isCompleted: true }] } });
+  });
+});
+
+describe("updateTodo", () => {
+  it("hoga -> hoge", () => {
     expect(
       reducer(
         {
           todo: {
             todos: [
-              {
-                id: 1,
-                value: "hogee",
-                isForm: true,
-              },
+              { id: 1, value: "hoga", isForm: true },
+              { id: 2, value: "fuga", isForm: false },
+              { id: 3, value: "piyo", isForm: false },
             ],
           },
         },
-        {
-          type: "UPDATE_TODO",
-          payload: {
-            id: 1,
-            value: "hoge",
-          },
-        }
+        { type: "UPDATE_TODO", payload: { id: 1, value: "hoge" } }
       )
     ).toEqual({
       form: {},
       todo: {
         todos: [
-          {
-            id: 1,
-            isForm: false,
-            value: "hoge",
-          },
+          { id: 1, value: "hoge", isForm: false },
+          { id: 2, value: "fuga", isForm: false },
+          { id: 3, value: "piyo", isForm: false },
         ],
       },
     });
   });
 
-  it("changeTextform", () => {
+  it("hoge -> fuga", () => {
+    expect(
+      reducer(
+        {
+          todo: {
+            todos: [{ id: 1, value: "hoga", isForm: true }],
+          },
+        },
+        { type: "UPDATE_TODO", payload: { id: 1, value: "fuga" } }
+      )
+    ).toEqual({
+      form: {},
+      todo: {
+        todos: [{ id: 1, value: "fuga", isForm: false }],
+      },
+    });
+  });
+});
+
+describe("changeTextform", () => {
+  it("false -> true", () => {
     expect(
       reducer(
         {
@@ -176,7 +234,7 @@ describe("todoReducer-reducers", () => {
         {
           type: "CHANGE_TEXTFORM",
           payload: {
-            id: 2,
+            id: 1,
           },
         }
       )
@@ -186,18 +244,20 @@ describe("todoReducer-reducers", () => {
         todos: [
           {
             id: 1,
-            isForm: false,
+            isForm: true,
           },
           {
             id: 2,
-            isForm: true,
+            isForm: false,
           },
         ],
       },
     });
   });
+});
 
-  it("chancelUpdate", () => {
+describe("cancelUpdate", () => {
+  it("true -> false", () => {
     expect(
       reducer(
         {
@@ -205,11 +265,11 @@ describe("todoReducer-reducers", () => {
             todos: [
               {
                 id: 1,
-                isForm: false,
+                isForm: true,
               },
               {
                 id: 2,
-                isForm: true,
+                isForm: false,
               },
               {
                 id: 3,
@@ -218,12 +278,7 @@ describe("todoReducer-reducers", () => {
             ],
           },
         },
-        {
-          type: "CHANCEL_UPDATE",
-          payload: {
-            id: 2,
-          },
-        }
+        { type: "CANCEL_UPDATE", payload: { id: 1 } }
       )
     ).toEqual({
       form: {},

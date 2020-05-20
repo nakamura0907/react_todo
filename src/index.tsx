@@ -4,7 +4,7 @@ import { createStore, compose } from "redux";
 import { Provider } from "react-redux";
 import * as ReactDOM from "react-dom";
 
-import reducers from "./modules";
+import reducers from "@module";
 const store = createStore(
   reducers,
   compose(
@@ -12,10 +12,10 @@ const store = createStore(
   )
 );
 
-import Footer from "./components/templates/Footer";
-import Head from "./components/templates/Head";
-import Header from "./components/templates/Header";
-import Main from "./components/templates/Main";
+import Footer from "@component/templates/Footer";
+import Head from "@component/templates/Head";
+import Header from "@component/templates/Header";
+import Main from "@component/templates/Main";
 
 class App extends React.Component {
   render(): object {

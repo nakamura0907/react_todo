@@ -6,11 +6,11 @@ export const Actions = createActions(
   {
     ADD_TODO: (value) => ({ id: uuidv4(), value: value, isCompleted: false, isForm: false }),
     REMOVE_TODO: (index) => ({ index: index }),
-    COMPLETED_TODO: (id) => ({ id: id }),
+    COMPLETE_TODO: (id) => ({ id: id }),
     UPDATE_TODO: (id, value) => ({ id: id, value: value }),
     CHANGE_TEXTFORM: (id) => ({ id: id }),
   },
-  "CHANCEL_UPDATE"
+  "CANCEL_UPDATE"
 );
 
 // reducer
@@ -28,7 +28,7 @@ const todo = handleActions(
       ...state,
       todos: [...state.todos.slice(0, action.payload.index), ...state.todos.slice(action.payload.index + 1)],
     }),
-    [Actions.completedTodo]: (state, action) => ({
+    [Actions.completeTodo]: (state, action) => ({
       ...state,
       todos: state.todos.map((todo) => ({
         ...todo,
@@ -50,7 +50,7 @@ const todo = handleActions(
         isForm: action.payload.id === todo.id ? true : false,
       })),
     }),
-    [Actions.chancelUpdate]: (state) => ({
+    [Actions.cancelUpdate]: (state) => ({
       ...state,
       todos: state.todos.map((todo) => ({
         ...todo,

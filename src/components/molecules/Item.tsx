@@ -3,9 +3,9 @@ import { Field } from "redux-form";
 import classNames from "classnames";
 import styled from "styled-components";
 
-import Button from "../atoms/Button";
-import ButtonIcon from "../atoms/ButtonIcon";
-import Input from "../atoms/Input";
+import Button from "@atom/Button";
+import ButtonIcon from "@atom/ButtonIcon";
+import Input from "@atom/Input";
 
 interface Todo {
   id: string;
@@ -15,9 +15,9 @@ interface Todo {
 }
 
 interface Props {
-  chancelUpdate: Function;
+  cancelUpdate: Function;
   changeTextform: Function;
-  completedTodo: Function;
+  completeTodo: Function;
   index: number;
   initialize: Function;
   removeTodo: Function;
@@ -28,9 +28,9 @@ interface Props {
 }
 
 const Item: React.FC<Props> = ({
-  chancelUpdate,
+  cancelUpdate,
   changeTextform,
-  completedTodo,
+  completeTodo,
   index,
   initialize,
   removeTodo,
@@ -43,8 +43,8 @@ const Item: React.FC<Props> = ({
     "fa-square": !todo.isCompleted,
     "fa-check-square": todo.isCompleted,
   });
-  const handleClickChancel = (): void => {
-    chancelUpdate();
+  const handleClickCancel = (): void => {
+    cancelUpdate();
     reset();
   };
   const handleClickChangeTextform = (): void => {
@@ -56,8 +56,8 @@ const Item: React.FC<Props> = ({
       removeTodo(index);
     }
   };
-  const handleClickCompleted = (): void => {
-    completedTodo(todo.id);
+  const handleClickComplete = (): void => {
+    completeTodo(todo.id);
   };
   const handleClickUpdate = (): void => {
     if (todoListForm.values.todoListForm) {
@@ -68,7 +68,7 @@ const Item: React.FC<Props> = ({
   if (!todo.isForm) {
     return (
       <ListItem className={classNames({ "is-completed": todo.isCompleted })}>
-        <Icon onClick={handleClickCompleted} className={iconClass} />
+        <Icon onClick={handleClickComplete} className={iconClass} />
         <ListText onClick={handleClickChangeTextform}>{todo.value}</ListText>
         <ButtonIcon color="white" background="red" iconClass="far fa-trash-alt" onClick={handleClickRemove} />
       </ListItem>
@@ -76,10 +76,10 @@ const Item: React.FC<Props> = ({
   } else {
     return (
       <ListItem className={classNames({ "is-completed": todo.isCompleted })}>
-        <Icon onClick={handleClickCompleted} className={iconClass} />
+        <Icon onClick={handleClickComplete} className={iconClass} />
         <Field name="todoListForm" type="text" component={Input} />
-        <Button color="red" background="#eff3f6" text="Cancel" onClick={handleClickChancel} />
-        <ButtonIcon color="black" background="#eff3f6" iconClass="far fa-edit" onClick={handleClickUpdate} />
+        <Button color="blue" background="#eff3f6" text="Cancel" onClick={handleClickCancel} />
+        <ButtonIcon color="white" background="blue" iconClass="far fa-edit" onClick={handleClickUpdate} />
       </ListItem>
     );
   }

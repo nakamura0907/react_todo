@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import Item from "../molecules/Item";
+import Item from "@component/molecules/Item";
 
 interface TodosObject {
   id: string;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Field } from "redux-form";
 
-import InputField from "../molecules/InputField";
+import InputField from "@component/molecules/InputField";
 import * as Validate from "../../utils/Validate";
 
 interface Props {

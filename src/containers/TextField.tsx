@@ -1,8 +1,8 @@
-import { Actions } from "../modules/todo";
+import { Actions } from "@module/todo";
 import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
 
-import TextFieldComponent from "../components/organisms/TextField";
+import TextFieldComponent from "@component/organisms/TextField";
 
 const mapStateToProps = (state) => ({
   value: state.form.todoForm,

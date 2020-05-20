@@ -1,8 +1,8 @@
-import { Actions } from "../modules/todo";
+import { Actions } from "@module/todo";
 import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
 
-import ListComponent from "../components/organisms/List";
+import ListComponent from "@component/organisms/List";
 
 const mapStateToProps = (state) => {
   return {

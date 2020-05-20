@@ -3,9 +3,9 @@ import { Field } from "redux-form";
 import classNames from "classnames";
 import styled from "styled-components";
 
-import Button from "../atoms/Button";
-import ButtonIcon from "../atoms/ButtonIcon";
-import Input from "../atoms/Input";
+import Button from "@atom/Button";
+import ButtonIcon from "@atom/ButtonIcon";
+import Input from "@atom/Input";
 
 interface Todo {
   id: string;

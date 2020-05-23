@@ -15,9 +15,6 @@ interface Todo {
 }
 
 interface Props {
-  cancelUpdate: Function;
-  changeTextform: Function;
-  completeTodo: Function;
   index: number;
   initialize: Function;
   removeTodo: Function;
@@ -27,29 +24,20 @@ interface Props {
   updateTodo: Function;
 }
 
-const Item: React.FC<Props> = ({
-  cancelUpdate,
-  changeTextform,
-  completeTodo,
-  index,
-  initialize,
-  removeTodo,
-  reset,
-  todo,
-  todoListForm,
-  updateTodo,
-}) => {
+const Item: React.FC<Props> = ({ index, initialize, removeTodo, reset, todo, todoListForm, updateTodo }) => {
+  const [isCompleted, setIsCompleted] = React.useState(false);
+  const [isForm, setIsForm] = React.useState(false);
   const iconClass = classNames("far", {
-    "fa-square": !todo.isCompleted,
-    "fa-check-square": todo.isCompleted,
+    "fa-square": !isCompleted,
+    "fa-check-square": isCompleted,
   });
   const handleClickCancel = (): void => {
-    cancelUpdate();
+    setIsForm(false);
     reset();
   };
   const handleClickChangeTextform = (): void => {
     initialize({ todoListForm: todo.value });
-    changeTextform(todo.id);
+    setIsForm(true);
   };
   const handleClickRemove = (): void => {
     if (window.confirm("「" + todo.value + "」 を削除しますか?")) {
@@ -57,17 +45,19 @@ const Item: React.FC<Props> = ({
     }
   };
   const handleClickComplete = (): void => {
-    completeTodo(todo.id);
+    setIsCompleted(!isCompleted);
   };
   const handleClickUpdate = (): void => {
     if (todoListForm.values.todoListForm) {
       updateTodo(todo.id, todoListForm.values.todoListForm);
+      setIsForm(false);
       reset();
     }
   };
-  if (!todo.isForm) {
+  console.log(isForm);
+  if (!isForm) {
     return (
-      <ListItem className={classNames({ "is-completed": todo.isCompleted })}>
+      <ListItem className={classNames({ "is-completed": isCompleted })}>
         <Icon onClick={handleClickComplete} className={iconClass} />
         <ListText onClick={handleClickChangeTextform}>{todo.value}</ListText>
         <ButtonIcon color="white" background="red" iconClass="far fa-trash-alt" onClick={handleClickRemove} />
@@ -75,7 +65,7 @@ const Item: React.FC<Props> = ({
     );
   } else {
     return (
-      <ListItem className={classNames({ "is-completed": todo.isCompleted })}>
+      <ListItem className={classNames({ "is-completed": isCompleted })}>
         <Icon onClick={handleClickComplete} className={iconClass} />
         <Field name="todoListForm" type="text" component={Input} />
         <Button color="blue" background="#eff3f6" text="Cancel" onClick={handleClickCancel} />

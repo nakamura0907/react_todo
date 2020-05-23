@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-
+import { v4 as uuidv4 } from "uuid";
 import Item from "@component/molecules/Item";
 
 interface TodosObject {
@@ -11,9 +11,6 @@ interface TodosObject {
 }
 
 interface Props {
-  cancelUpdate: Function;
-  changeTextform: Function;
-  completeTodo: Function;
   initialize: Function;
   removeTodo: Function;
   reset: Function;
@@ -22,27 +19,14 @@ interface Props {
   updateTodo: Function;
 }
 
-const List: React.FC<Props> = ({
-  cancelUpdate,
-  changeTextform,
-  completeTodo,
-  initialize,
-  removeTodo,
-  reset,
-  todoListForm,
-  todos,
-  updateTodo,
-}) => {
+const List: React.FC<Props> = ({ initialize, removeTodo, reset, todoListForm, todos, updateTodo }) => {
   return (
     <ListStyled>
       {todos.map((todo, index) => (
         <Item
-          cancelUpdate={cancelUpdate}
-          changeTextform={changeTextform}
-          completeTodo={completeTodo}
           index={index}
           initialize={initialize}
-          key={index}
+          key={uuidv4()}
           removeTodo={removeTodo}
           reset={reset}
           todo={todo}

@@ -1,10 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-// const BomPlugin = require("webpack-utf8-bom");
 const path = require("path");
-
-// const MODE = "development";
-// // const MODE = "production";
-// const enabledSourceMap = MODE === "development";
 
 module.exports = [
   {

@@ -4,7 +4,14 @@ import { v4 as uuidv4 } from "uuid";
 // actions
 export const Actions = createActions(
   {
-    ADD_TODO: (value) => ({ id: uuidv4(), value: value, isCompleted: false, isForm: false }),
+    ADD_TODO: (value, priority, favorite) => ({
+      id: uuidv4(),
+      value: value,
+      priority: priority,
+      favorite: favorite,
+      isCompleted: false,
+      isForm: false,
+    }),
     REMOVE_TODO: (index) => ({ index: index }),
     COMPLETE_TODO: (id) => ({ id: id }),
     UPDATE_TODO: (id, value) => ({ id: id, value: value }),

@@ -56,7 +56,7 @@ ul{
     opacity: .5;
 }
 .is-completed p {
-    background: orange;
+    // background: orange;
     text-decoration: line-through;
  }
 `;

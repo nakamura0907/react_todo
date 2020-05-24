@@ -8,9 +8,11 @@ import ButtonIcon from "@atom/ButtonIcon";
 import Input from "@atom/Input";
 
 interface Todo {
+  favorite: boolean;
   id: string;
   isCompleted: boolean;
   isForm: boolean;
+  priority: string;
   value: string;
 }
 
@@ -27,7 +29,7 @@ interface Props {
   updateTodo: Function;
 }
 
-const Item: React.FC<Props> = ({
+const TodoItem: React.FC<Props> = ({
   cancelUpdate,
   changeTextform,
   completeTodo,
@@ -68,15 +70,22 @@ const Item: React.FC<Props> = ({
   if (!todo.isForm) {
     return (
       <ListItem className={classNames({ "is-completed": todo.isCompleted })}>
-        <Icon onClick={handleClickComplete} className={iconClass} />
+        <Icon onClick={handleClickComplete} className={iconClass} color={todo.priority} />
         <ListText onClick={handleClickChangeTextform}>{todo.value}</ListText>
+        {todo.favorite ? (
+          <span>
+            <i className="fas fa-heart" style={{ marginRight: "15px", color: "pink", fontSize: "25px" }}></i>
+          </span>
+        ) : (
+          ""
+        )}
         <ButtonIcon color="white" background="red" iconClass="far fa-trash-alt" onClick={handleClickRemove} />
       </ListItem>
     );
   } else {
     return (
       <ListItem className={classNames({ "is-completed": todo.isCompleted })}>
-        <Icon onClick={handleClickComplete} className={iconClass} />
+        <Icon onClick={handleClickComplete} className={iconClass} color={todo.priority} />
         <Field name="todoListForm" type="text" component={Input} />
         <Button color="blue" background="#eff3f6" text="Cancel" onClick={handleClickCancel} />
         <ButtonIcon color="white" background="blue" iconClass="far fa-edit" onClick={handleClickUpdate} />
@@ -86,6 +95,7 @@ const Item: React.FC<Props> = ({
 };
 
 const Icon = styled.i`
+  color: ${(props) => props.color};
   margin-right: 10px;
   font-size: 36px;
 `;
@@ -113,4 +123,4 @@ const ListText = styled.p`
   }
 `;
 
-export default Item;
+export default TodoItem;

@@ -1,17 +1,16 @@
 import * as React from "react";
-import { Field } from "redux-form";
 import classNames from "classnames";
 import styled from "styled-components";
 
-import Button from "@atom/Button";
 import ButtonIcon from "@atom/ButtonIcon";
-import Input from "@atom/Input";
+import TaskMenu from "@component/molecules/TaskMenu";
 
 interface Todo {
   favorite: boolean;
   id: string;
   isCompleted: boolean;
   isForm: boolean;
+  memo: string;
   priority: string;
   value: string;
 }
@@ -41,14 +40,13 @@ const TodoItem: React.FC<Props> = ({
   todoListForm,
   updateTodo,
 }) => {
+  const [favorite, setFavorite] = React.useState(todo.favorite);
+  const [priority, setPriority] = React.useState(todo.priority);
+  const [memo, setMemo] = React.useState(todo.memo);
   const iconClass = classNames("far", {
     "fa-square": !todo.isCompleted,
     "fa-check-square": todo.isCompleted,
   });
-  const handleClickCancel = (): void => {
-    cancelUpdate();
-    reset();
-  };
   const handleClickChangeTextform = (): void => {
     initialize({ todoListForm: todo.value });
     changeTextform(todo.id);
@@ -61,14 +59,22 @@ const TodoItem: React.FC<Props> = ({
   const handleClickComplete = (): void => {
     completeTodo(todo.id);
   };
+  const handleClickCancel = (): void => {
+    cancelUpdate();
+    reset();
+    setFavorite(todo.favorite);
+    setPriority(todo.priority);
+    setMemo(todo.memo);
+  };
   const handleClickUpdate = (): void => {
     if (todoListForm.values.todoListForm) {
-      updateTodo(todo.id, todoListForm.values.todoListForm);
+      const form = { favorite: favorite, priority: priority, memo: memo };
+      updateTodo(todo.id, todoListForm.values.todoListForm, form);
       reset();
     }
   };
-  if (!todo.isForm) {
-    return (
+  return (
+    <>
       <ListItem className={classNames({ "is-completed": todo.isCompleted })}>
         <Icon onClick={handleClickComplete} className={iconClass} color={todo.priority} />
         <ListText onClick={handleClickChangeTextform}>{todo.value}</ListText>
@@ -81,17 +87,22 @@ const TodoItem: React.FC<Props> = ({
         )}
         <ButtonIcon color="white" background="red" iconClass="far fa-trash-alt" onClick={handleClickRemove} />
       </ListItem>
-    );
-  } else {
-    return (
-      <ListItem className={classNames({ "is-completed": todo.isCompleted })}>
-        <Icon onClick={handleClickComplete} className={iconClass} color={todo.priority} />
-        <Field name="todoListForm" type="text" component={Input} />
-        <Button color="blue" background="#eff3f6" text="Cancel" onClick={handleClickCancel} />
-        <ButtonIcon color="white" background="blue" iconClass="far fa-edit" onClick={handleClickUpdate} />
-      </ListItem>
-    );
-  }
+      {todo.isForm ? (
+        <TaskMenu
+          priority={priority}
+          favorite={favorite}
+          memo={memo}
+          handleChangeFavorite={(): void => setFavorite(!favorite)}
+          handleChangeMemo={(e): void => setMemo(e.target.value)}
+          handleChangePriority={(e): void => setPriority(e.target.value)}
+          handleClickCancel={handleClickCancel}
+          handleClickUpdate={handleClickUpdate}
+        />
+      ) : (
+        ""
+      )}
+    </>
+  );
 };
 
 const Icon = styled.i`

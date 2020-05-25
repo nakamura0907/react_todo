@@ -8,6 +8,7 @@ interface TodosObject {
   id: string;
   isCompleted: boolean;
   isForm: boolean;
+  memo: string;
   priority: string;
   value: string;
 }

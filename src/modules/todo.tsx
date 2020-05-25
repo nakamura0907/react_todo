@@ -8,7 +8,7 @@ export const Actions = createActions(
       id: uuidv4(),
       favorite: favorite,
       isCompleted: false,
-      isForm: false,
+      isTask: false,
       memo: "",
       priority: priority,
       value: value,
@@ -54,7 +54,7 @@ const todo = handleActions(
       todos: state.todos.map((todo) => ({
         ...todo,
         value: action.payload.id === todo.id ? action.payload.value : todo.value,
-        isForm: action.payload.id === todo.id ? !todo.isForm : todo.isForm,
+        isTask: action.payload.id === todo.id ? !todo.isTask : todo.isTask,
         favorite: action.payload.id === todo.id ? action.payload.favorite : todo.favorite,
         memo: action.payload.id === todo.id ? action.payload.memo : todo.memo,
         priority: action.payload.id === todo.id ? action.payload.priority : todo.priority,
@@ -64,14 +64,14 @@ const todo = handleActions(
       ...state,
       todos: state.todos.map((todo) => ({
         ...todo,
-        isForm: action.payload.id === todo.id ? true : false,
+        isTask: action.payload.id === todo.id ? true : false,
       })),
     }),
     [Actions.cancelUpdate]: (state) => ({
       ...state,
       todos: state.todos.map((todo) => ({
         ...todo,
-        isForm: false,
+        isTask: false,
       })),
     }),
   },

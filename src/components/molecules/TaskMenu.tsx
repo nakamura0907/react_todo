@@ -66,6 +66,7 @@ const Task = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: 80vw;
+  z-index: 10;
 
   & > div {
     margin-top: 30px;

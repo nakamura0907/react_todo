@@ -9,7 +9,7 @@ interface Todo {
   favorite: boolean;
   id: string;
   isCompleted: boolean;
-  isForm: boolean;
+  isTask: boolean;
   memo: string;
   priority: string;
   value: string;
@@ -87,7 +87,7 @@ const TodoItem: React.FC<Props> = ({
         )}
         <ButtonIcon color="white" background="red" iconClass="far fa-trash-alt" onClick={handleClickRemove} />
       </ListItem>
-      {todo.isForm ? (
+      {todo.isTask ? (
         <TaskMenu
           priority={priority}
           favorite={favorite}

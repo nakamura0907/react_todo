@@ -7,7 +7,7 @@ interface TodosObject {
   favorite: boolean;
   id: string;
   isCompleted: boolean;
-  isForm: boolean;
+  isTask: boolean;
   memo: string;
   priority: string;
   value: string;

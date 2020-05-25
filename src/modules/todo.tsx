@@ -6,15 +6,22 @@ export const Actions = createActions(
   {
     ADD_TODO: (value, priority, favorite) => ({
       id: uuidv4(),
-      value: value,
-      priority: priority,
       favorite: favorite,
       isCompleted: false,
       isForm: false,
+      memo: "",
+      priority: priority,
+      value: value,
     }),
     REMOVE_TODO: (index) => ({ index: index }),
     COMPLETE_TODO: (id) => ({ id: id }),
-    UPDATE_TODO: (id, value) => ({ id: id, value: value }),
+    UPDATE_TODO: (id, value, form) => ({
+      id: id,
+      value: value,
+      favorite: form.favorite,
+      priority: form.priority,
+      memo: form.memo,
+    }),
     CHANGE_TEXTFORM: (id) => ({ id: id }),
   },
   "CANCEL_UPDATE"
@@ -48,6 +55,9 @@ const todo = handleActions(
         ...todo,
         value: action.payload.id === todo.id ? action.payload.value : todo.value,
         isForm: action.payload.id === todo.id ? !todo.isForm : todo.isForm,
+        favorite: action.payload.id === todo.id ? action.payload.favorite : todo.favorite,
+        memo: action.payload.id === todo.id ? action.payload.memo : todo.memo,
+        priority: action.payload.id === todo.id ? action.payload.priority : todo.priority,
       })),
     }),
     [Actions.changeTextform]: (state, action) => ({

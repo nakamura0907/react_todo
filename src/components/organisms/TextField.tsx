@@ -2,7 +2,6 @@ import * as React from "react";
 import { Field } from "redux-form";
 import * as moment from "moment";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
 
 import InputField from "@component/molecules/InputField";
 import * as Validate from "../../utils/Validate";

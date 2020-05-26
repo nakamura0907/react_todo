@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Field } from "redux-form";
-import * as moment from "moment";
+// import * as moment from "moment";
 import Calendar from "react-calendar";
 
 import InputField from "@component/molecules/InputField";
@@ -17,8 +17,8 @@ const TextField: React.FC<Props> = ({ onClick, reset, value }) => {
   const [favorite, setFavorite] = React.useState(false);
   const [priority, setPriority] = React.useState("black");
   const handleClick = (): void => {
-    const deadline = moment(date).diff(moment(new Date()), "days");
-    if (value.values.todoForm && deadline >= 0) {
+    const deadline = (date.getTime() - new Date().getTime()) / 86400000 + 1;
+    if (value.values.todoForm) {
       const form = { favorite: favorite, priority: priority, deadline: deadline };
       onClick(value.values.todoForm, form);
       reset();
@@ -43,7 +43,7 @@ const TextField: React.FC<Props> = ({ onClick, reset, value }) => {
         </select>
       </div>
       <div>
-        <label htmlFor="calendar">期限:{moment(date).format("YYYY/MM/DD")}</label>
+        <label htmlFor="calendar">期限:{date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()}</label>
         <Calendar
           onChange={(date): void => setDate(date)}
           value={date}

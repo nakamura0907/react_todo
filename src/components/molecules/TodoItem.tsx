@@ -1,7 +1,7 @@
 import * as React from "react";
 import classNames from "classnames";
 import styled from "styled-components";
-import * as moment from "moment";
+// import * as moment from "moment";
 
 import ButtonIcon from "@atom/ButtonIcon";
 import TaskMenu from "@component/molecules/TaskMenu";
@@ -74,7 +74,7 @@ const TodoItem: React.FC<Props> = ({
     setDate(new Date());
   };
   const handleClickUpdate = (): void => {
-    const deadline = moment(date).diff(moment(new Date()), "days");
+    const deadline = (date.getTime() - new Date().getTime()) / 86400000 + 1;
     if (todoListForm.values.todoListForm && deadline >= 0) {
       const form = { favorite: favorite, priority: priority, deadline: deadline, memo: memo };
       updateTodo(todo.id, todoListForm.values.todoListForm, form);
@@ -93,7 +93,7 @@ const TodoItem: React.FC<Props> = ({
         ) : (
           ""
         )}
-        <span style={{ width: "100%" }}>残り{todo.deadline}日</span>
+        <span style={{ width: "100%" }}>残り{Math.floor(todo.deadline)}日</span>
         <ButtonIcon color="white" background="red" iconClass="far fa-trash-alt" onClick={handleClickRemove} />
       </ListItem>
       {todo.isTask ? (

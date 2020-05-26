@@ -2,7 +2,6 @@ import * as React from "react";
 import styled from "styled-components";
 import { Field } from "redux-form";
 import Calendar from "react-calendar";
-import * as moment from "moment";
 
 import Button from "@atom/Button";
 import ButtonIcon from "@atom/ButtonIcon";
@@ -43,7 +42,7 @@ const TaskMenu = ({
           </select>
         </div>
         <div>
-          <label htmlFor="calendar">期限:{moment(date).format("YYYY/MM/DD")}</label>
+          <label htmlFor="calendar">期限:{date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()}</label>
           <Calendar onChange={handleChangeDate} value={date} minDate={new Date()} maxDate={new Date(2100, 1, 1)} />
         </div>
       </div>

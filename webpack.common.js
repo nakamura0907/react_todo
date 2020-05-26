@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = [
   {
@@ -58,6 +59,7 @@ module.exports = [
         filename: "./index.html",
       }),
       // new BomPlugin(true),
+      // new BundleAnalyzerPlugin(),
     ],
   },
 ];

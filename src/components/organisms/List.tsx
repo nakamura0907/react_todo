@@ -38,12 +38,29 @@ const List: React.FC<Props> = ({
   updateTodo,
 }) => {
   const [date, setDate] = React.useState(new Date());
-  const [sort, setSort] = React.useState("default");
+
+  const [sortResult, setSortResult] = React.useState(todos);
+  const handleChange = (e): void => {
+    switch (e.target.value) {
+      case "default":
+        break;
+      case "complete":
+        break;
+      case "priority":
+        break;
+      case "favorite":
+        break;
+      case "date":
+        break;
+    }
+    const result = todos;
+    setSortResult(result);
+  };
   return (
     <>
       <div style={{ marginTop: "30px" }}>
         <label htmlFor="sort">並び順(未実装): </label>
-        <select name="sort" id="sort" defaultValue={sort}>
+        <select name="sort" id="sort" defaultValue="default" onChange={handleChange}>
           <option value="default">デフォルト</option>
           <option value="complete">達成済み</option>
           <option value="priority">優先度順</option>

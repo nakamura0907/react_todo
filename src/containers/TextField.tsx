@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onClick: (value, priority, favorite): Record<string, string> => dispatch(Actions.addTodo(value, priority, favorite)),
+  onClick: (value, form): Record<string, string> => dispatch(Actions.addTodo(value, form)),
 });
 
 const TextField = connect(

@@ -1,5 +1,8 @@
 import * as React from "react";
 import { Field } from "redux-form";
+import * as moment from "moment";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 import InputField from "@component/molecules/InputField";
 import * as Validate from "../../utils/Validate";
@@ -11,12 +14,16 @@ interface Props {
 }
 
 const TextField: React.FC<Props> = ({ onClick, reset, value }) => {
+  const [date, setDate] = React.useState(new Date());
   const [favorite, setFavorite] = React.useState(false);
   const [priority, setPriority] = React.useState("black");
   const handleClick = (): void => {
-    if (value.values.todoForm) {
-      onClick(value.values.todoForm, priority, favorite);
+    const deadline = moment(date).diff(moment(new Date()), "days");
+    if (value.values.todoForm && deadline >= 0) {
+      const form = { favorite: favorite, priority: priority, deadline: deadline };
+      onClick(value.values.todoForm, form);
       reset();
+      setDate(new Date());
       setPriority("black");
       setFavorite(false);
     }
@@ -35,6 +42,15 @@ const TextField: React.FC<Props> = ({ onClick, reset, value }) => {
           <option value="orange">2</option>
           <option value="red">3</option>
         </select>
+      </div>
+      <div>
+        <label htmlFor="calendar">期限:{moment(date).format("YYYY/MM/DD")}</label>
+        <Calendar
+          onChange={(date): void => setDate(date)}
+          value={date}
+          minDate={new Date()}
+          maxDate={new Date(2100, 1, 1)}
+        />
       </div>
       <Field name="todoForm" type="text" onClick={handleClick} validate={[Validate.required]} component={InputField} />
     </>

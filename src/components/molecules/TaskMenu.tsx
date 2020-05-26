@@ -1,12 +1,15 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Field } from "redux-form";
+import Calendar from "react-calendar";
+import * as moment from "moment";
 
 import Button from "@atom/Button";
 import ButtonIcon from "@atom/ButtonIcon";
 import Input from "@atom/Input";
 
 const TaskMenu = ({
+  date,
   favorite,
   memo,
   priority,
@@ -15,6 +18,7 @@ const TaskMenu = ({
   handleChangeFavorite,
   handleChangeMemo,
   handleChangePriority,
+  handleChangeDate,
 }) => {
   return (
     <Task>
@@ -38,6 +42,10 @@ const TaskMenu = ({
             <option value="red">3</option>
           </select>
         </div>
+        <div>
+          <label htmlFor="calendar">期限:{moment(date).format("YYYY/MM/DD")}</label>
+          <Calendar onChange={handleChangeDate} value={date} minDate={new Date()} maxDate={new Date(2100, 1, 1)} />
+        </div>
       </div>
       {/* form-end */}
       <div>
@@ -58,13 +66,12 @@ const TaskMenu = ({
 
 const Task = styled.div`
   background: white;
+  bottom: 0;
   box-shadow: 0 8px 7px rgba(0, 0, 0, 0.6);
-  height: 80vh;
-  left: 50%;
+  overflow-y: auto;
   padding: 15px;
   position: fixed;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
   width: 80vw;
   z-index: 10;
 

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import TodoItem from "@component/molecules/TodoItem";
 
 interface TodosObject {
+  deadline: number;
   favorite: boolean;
   id: string;
   isCompleted: boolean;
@@ -36,6 +37,7 @@ const List: React.FC<Props> = ({
   todos,
   updateTodo,
 }) => {
+  const [date, setDate] = React.useState(new Date());
   const [sort, setSort] = React.useState("default");
   return (
     <>
@@ -52,6 +54,8 @@ const List: React.FC<Props> = ({
       <ListStyled>
         {todos.map((todo, index) => (
           <TodoItem
+            date={date}
+            setDate={setDate}
             cancelUpdate={cancelUpdate}
             changeTextform={changeTextform}
             completeTodo={completeTodo}

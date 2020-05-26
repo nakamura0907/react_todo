@@ -4,13 +4,14 @@ import { v4 as uuidv4 } from "uuid";
 // actions
 export const Actions = createActions(
   {
-    ADD_TODO: (value, priority, favorite) => ({
+    ADD_TODO: (value, form) => ({
       id: uuidv4(),
-      favorite: favorite,
+      deadline: form.deadline,
+      favorite: form.favorite,
       isCompleted: false,
       isTask: false,
       memo: "",
-      priority: priority,
+      priority: form.priority,
       value: value,
     }),
     REMOVE_TODO: (index) => ({ index: index }),
@@ -20,6 +21,7 @@ export const Actions = createActions(
       value: value,
       favorite: form.favorite,
       priority: form.priority,
+      deadline: form.deadline,
       memo: form.memo,
     }),
     CHANGE_TEXTFORM: (id) => ({ id: id }),
@@ -53,6 +55,7 @@ const todo = handleActions(
       ...state,
       todos: state.todos.map((todo) => ({
         ...todo,
+        deadline: action.payload.id === todo.id ? action.payload.deadline : todo.deadline,
         value: action.payload.id === todo.id ? action.payload.value : todo.value,
         isTask: action.payload.id === todo.id ? !todo.isTask : todo.isTask,
         favorite: action.payload.id === todo.id ? action.payload.favorite : todo.favorite,

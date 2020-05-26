@@ -1,11 +1,13 @@
 import * as React from "react";
 import classNames from "classnames";
 import styled from "styled-components";
+import * as moment from "moment";
 
 import ButtonIcon from "@atom/ButtonIcon";
 import TaskMenu from "@component/molecules/TaskMenu";
 
 interface Todo {
+  deadline: number;
   favorite: boolean;
   id: string;
   isCompleted: boolean;
@@ -16,6 +18,8 @@ interface Todo {
 }
 
 interface Props {
+  date: Date;
+  setDate: Function;
   cancelUpdate: Function;
   changeTextform: Function;
   completeTodo: Function;
@@ -29,6 +33,8 @@ interface Props {
 }
 
 const TodoItem: React.FC<Props> = ({
+  date,
+  setDate,
   cancelUpdate,
   changeTextform,
   completeTodo,
@@ -65,10 +71,12 @@ const TodoItem: React.FC<Props> = ({
     setFavorite(todo.favorite);
     setPriority(todo.priority);
     setMemo(todo.memo);
+    setDate(new Date());
   };
   const handleClickUpdate = (): void => {
-    if (todoListForm.values.todoListForm) {
-      const form = { favorite: favorite, priority: priority, memo: memo };
+    const deadline = moment(date).diff(moment(new Date()), "days");
+    if (todoListForm.values.todoListForm && deadline >= 0) {
+      const form = { favorite: favorite, priority: priority, deadline: deadline, memo: memo };
       updateTodo(todo.id, todoListForm.values.todoListForm, form);
       reset();
     }
@@ -85,16 +93,19 @@ const TodoItem: React.FC<Props> = ({
         ) : (
           ""
         )}
+        <span style={{ width: "100%" }}>残り{todo.deadline}日</span>
         <ButtonIcon color="white" background="red" iconClass="far fa-trash-alt" onClick={handleClickRemove} />
       </ListItem>
       {todo.isTask ? (
         <TaskMenu
+          date={date}
           priority={priority}
           favorite={favorite}
           memo={memo}
           handleChangeFavorite={(): void => setFavorite(!favorite)}
           handleChangeMemo={(e): void => setMemo(e.target.value)}
           handleChangePriority={(e): void => setPriority(e.target.value)}
+          handleChangeDate={(date): void => setDate(date)}
           handleClickCancel={handleClickCancel}
           handleClickUpdate={handleClickUpdate}
         />

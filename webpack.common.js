@@ -1,12 +1,13 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.tsx",
   output: {
     path: path.join(__dirname, "public"),
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
   },
   module: {
     rules: [
@@ -49,13 +50,29 @@ module.exports = {
       "@component": path.resolve(__dirname, "src/components"),
       "@container": path.resolve(__dirname, "src/containers"),
       "@module": path.resolve(__dirname, "src/modules"),
+      "@utils": path.resolve(__dirname, "src/utils"),
     },
     extensions: [".tsx", ".ts", ".js", ".json"],
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all",
+        },
+      },
+    },
   },
   plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html",
+    }),
+    new LodashModuleReplacementPlugin({
+      collections: true,
+      chaining: true,
     }),
     // new BundleAnalyzerPlugin(),
   ],

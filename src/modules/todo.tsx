@@ -12,19 +12,19 @@ export const Actions = createActions(
       isTask: false,
       memo: "",
       priority: form.priority,
-      value: value,
+      value,
     }),
-    REMOVE_TODO: (index) => ({ index: index }),
-    COMPLETE_TODO: (id) => ({ id: id }),
+    REMOVE_TODO: (index) => ({ index }),
+    COMPLETE_TODO: (id) => ({ id }),
     UPDATE_TODO: (id, value, form) => ({
-      id: id,
-      value: value,
+      id,
+      value,
       favorite: form.favorite,
       priority: form.priority,
       deadline: form.deadline,
       memo: form.memo,
     }),
-    CHANGE_TEXTFORM: (id) => ({ id: id }),
+    CHANGE_TEXTFORM: (id) => ({ id }),
   },
   "CANCEL_UPDATE"
 );
@@ -53,15 +53,12 @@ const todo = handleActions(
     }),
     [Actions.updateTodo]: (state, action) => ({
       ...state,
-      todos: state.todos.map((todo) => ({
-        ...todo,
-        deadline: action.payload.id === todo.id ? action.payload.deadline : todo.deadline,
-        value: action.payload.id === todo.id ? action.payload.value : todo.value,
-        isTask: action.payload.id === todo.id ? !todo.isTask : todo.isTask,
-        favorite: action.payload.id === todo.id ? action.payload.favorite : todo.favorite,
-        memo: action.payload.id === todo.id ? action.payload.memo : todo.memo,
-        priority: action.payload.id === todo.id ? action.payload.priority : todo.priority,
-      })),
+      todos: state.todos.map((todo) => {
+        if (action.payload.id === todo.id) {
+          return { ...action.payload, isForm: !todo.isForm };
+        }
+        return todo;
+      }),
     }),
     [Actions.changeTextform]: (state, action) => ({
       ...state,

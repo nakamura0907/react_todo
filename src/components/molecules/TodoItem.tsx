@@ -91,7 +91,7 @@ const TodoItem: React.FC<Props> = ({
             <i className="fas fa-heart" style={{ marginRight: "15px", color: "pink", fontSize: "25px" }}></i>
           </span>
         ) : (
-          ""
+          <></>
         )}
         <span style={{ width: "100%" }}>残り{Math.floor(todo.deadline)}日</span>
         <ButtonIcon color="white" background="red" iconClass="far fa-trash-alt" onClick={handleClickRemove} />

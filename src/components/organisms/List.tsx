@@ -41,6 +41,7 @@ const List: React.FC<Props> = ({
 
   const [sortResult, setSortResult] = React.useState(todos);
   const handleChange = (e): void => {
+    const result = todos;
     switch (e.target.value) {
       case "default":
         break;
@@ -53,7 +54,6 @@ const List: React.FC<Props> = ({
       case "date":
         break;
     }
-    const result = todos;
     setSortResult(result);
   };
   return (

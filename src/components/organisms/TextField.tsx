@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Field } from "redux-form";
-// import * as moment from "moment";
 import Calendar from "react-calendar";
 
 import InputField from "@component/molecules/InputField";
 import * as Validate from "../../utils/Validate";
+import { getDate, diff } from "../../utils/dateHelper";
 
 interface Props {
   onClick: Function;
@@ -17,7 +17,7 @@ const TextField: React.FC<Props> = ({ onClick, reset, value }) => {
   const [favorite, setFavorite] = React.useState(false);
   const [priority, setPriority] = React.useState("black");
   const handleClick = (): void => {
-    const deadline = (date.getTime() - new Date().getTime()) / 86400000 + 1;
+    const deadline = diff(date);
     if (value.values.todoForm) {
       const form = { favorite: favorite, priority: priority, deadline: deadline };
       onClick(value.values.todoForm, form);
@@ -43,7 +43,7 @@ const TextField: React.FC<Props> = ({ onClick, reset, value }) => {
         </select>
       </div>
       <div>
-        <label htmlFor="calendar">期限:{date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()}</label>
+        <label htmlFor="calendar">期限:{getDate(date)}</label>
         <Calendar
           onChange={(date): void => setDate(date)}
           value={date}

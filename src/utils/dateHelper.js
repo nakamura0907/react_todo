@@ -1,5 +1,5 @@
 export const getDate = (date, separator = "/") => {
-    return date.getFullYear() + separator + date.getMonth() + separator + date.getDate()
+    return date.getFullYear() + separator + (date.getMonth() + 1) + separator + date.getDate()
 }
 
 

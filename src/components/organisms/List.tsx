@@ -38,29 +38,46 @@ const List: React.FC<Props> = ({
   updateTodo,
 }) => {
   const [date, setDate] = React.useState(new Date());
-
+  const [sort, setSort] = React.useState("default");
   const [sortResult, setSortResult] = React.useState(todos);
-  const handleChange = (e): void => {
+  React.useEffect(() => {
     const result = todos;
-    switch (e.target.value) {
+    switch (sort) {
       case "default":
         break;
       case "complete":
+        result.sort((a) => {
+          if (a.isCompleted === true) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
         break;
       case "priority":
+        // result.sort((a) => {});
         break;
       case "favorite":
+        result.sort((a) => {
+          if (a.favorite === true) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
         break;
       case "date":
+        result.sort((a, b) => b.deadline - a.deadline);
         break;
     }
+    console.log(result);
     setSortResult(result);
-  };
+  });
   return (
     <>
       <div style={{ marginTop: "30px" }}>
         <label htmlFor="sort">並び順(未実装): </label>
-        <select name="sort" id="sort" defaultValue="default" onChange={handleChange}>
+        <select name="sort" id="sort" defaultValue="default" onChange={(e) => setSort(e.target.value)}>
           <option value="default">デフォルト</option>
           <option value="complete">達成済み</option>
           <option value="priority">優先度順</option>
@@ -69,7 +86,7 @@ const List: React.FC<Props> = ({
         </select>
       </div>
       <ListStyled>
-        {todos.map((todo, index) => (
+        {sortResult.map((todo, index) => (
           <TodoItem
             date={date}
             setDate={setDate}

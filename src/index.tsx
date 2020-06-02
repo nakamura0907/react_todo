@@ -1,9 +1,10 @@
 import * as React from "react";
-import { createGlobalStyle } from "styled-components";
 import { createStore, compose } from "redux";
 import { Provider } from "react-redux";
-import * as ReactDOM from "react-dom";
-import "./utils/Calendar.css";
+import { render } from "react-dom";
+
+import { createGlobalStyle } from "styled-components";
+import "@utils/Calendar.css";
 
 import reducers from "@module";
 const store = createStore(
@@ -62,7 +63,7 @@ ul{
  }
 `;
 
-ReactDOM.render(
+render(
   <Provider store={store}>
     <App />
   </Provider>,

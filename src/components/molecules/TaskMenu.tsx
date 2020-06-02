@@ -7,6 +7,8 @@ import Button from "@atom/Button";
 import ButtonIcon from "@atom/ButtonIcon";
 import Input from "@atom/Input";
 
+import { getDate } from "../../utils/dateHelper";
+
 const TaskMenu = ({
   date,
   favorite,
@@ -35,14 +37,14 @@ const TaskMenu = ({
         <div>
           <label htmlFor="priority">優先度: </label>
           <select name="priority" id="priority" value={priority} onChange={handleChangePriority}>
-            <option value="black">0</option>
-            <option value="blue">1</option>
-            <option value="orange">2</option>
-            <option value="red">3</option>
+            <option value={0}>0</option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
           </select>
         </div>
         <div>
-          <label htmlFor="calendar">期限:{date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()}</label>
+          <label htmlFor="calendar">期限:{getDate(date)}</label>
           <Calendar onChange={handleChangeDate} value={date} minDate={new Date()} maxDate={new Date(2100, 1, 1)} />
         </div>
       </div>

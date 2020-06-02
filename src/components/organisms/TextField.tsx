@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Field } from "redux-form";
-// import * as moment from "moment";
 import Calendar from "react-calendar";
 
 import InputField from "@component/molecules/InputField";
 import * as Validate from "../../utils/Validate";
+import { getDate, diff } from "../../utils/dateHelper";
 
 interface Props {
   onClick: Function;
@@ -15,15 +15,15 @@ interface Props {
 const TextField: React.FC<Props> = ({ onClick, reset, value }) => {
   const [date, setDate] = React.useState(new Date());
   const [favorite, setFavorite] = React.useState(false);
-  const [priority, setPriority] = React.useState("black");
+  const [priority, setPriority] = React.useState(0);
   const handleClick = (): void => {
-    const deadline = (date.getTime() - new Date().getTime()) / 86400000 + 1;
+    const deadline = diff(date);
     if (value.values.todoForm) {
       const form = { favorite: favorite, priority: priority, deadline: deadline };
       onClick(value.values.todoForm, form);
       reset();
       setDate(new Date());
-      setPriority("black");
+      setPriority(0);
       setFavorite(false);
     }
   };
@@ -35,15 +35,20 @@ const TextField: React.FC<Props> = ({ onClick, reset, value }) => {
       </div>
       <div>
         <label htmlFor="priority">優先度: </label>
-        <select name="priority" id="priority" onChange={(e): void => setPriority(e.target.value)} value={priority}>
-          <option value="black">0</option>
-          <option value="blue">1</option>
-          <option value="orange">2</option>
-          <option value="red">3</option>
+        <select
+          name="priority"
+          id="priority"
+          onChange={(e): void => setPriority(parseInt(e.target.value))}
+          value={priority}
+        >
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
         </select>
       </div>
       <div>
-        <label htmlFor="calendar">期限:{date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()}</label>
+        <label htmlFor="calendar">期限:{getDate(date)}</label>
         <Calendar
           onChange={(date): void => setDate(date)}
           value={date}

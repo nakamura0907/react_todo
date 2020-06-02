@@ -8,6 +8,14 @@
         "lib": [
             "es2020",
             "dom"
-        ]
+        ],
+        "baseUrl": "./",
+        "paths": {
+            "@atom/*": ["src/components/atoms/*"],
+            "@component/*": ["src/components/*"],
+            "@container/*": ["src/containers/*"],
+            "@module/*": ["src/modules/*"],
+            "@utils/*": ["src/utils/*"],
+        }
     }
 }

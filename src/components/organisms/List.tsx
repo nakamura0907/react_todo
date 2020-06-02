@@ -10,13 +10,13 @@ interface TodosObject {
   isCompleted: boolean;
   isTask: boolean;
   memo: string;
-  priority: string;
+  priority: number;
   value: string;
 }
 
 interface Props {
   cancelUpdate: Function;
-  changeTextform: Function;
+  changeTask: Function;
   completeTodo: Function;
   initialize: Function;
   removeTodo: Function;
@@ -28,7 +28,7 @@ interface Props {
 
 const List: React.FC<Props> = ({
   cancelUpdate,
-  changeTextform,
+  changeTask,
   completeTodo,
   initialize,
   removeTodo,
@@ -38,29 +38,50 @@ const List: React.FC<Props> = ({
   updateTodo,
 }) => {
   const [date, setDate] = React.useState(new Date());
-
+  const [select, setSelect] = React.useState("default");
   const [sortResult, setSortResult] = React.useState(todos);
-  const handleChange = (e): void => {
-    switch (e.target.value) {
+  const sort = () => {
+    const result = todos;
+    switch (select) {
       case "default":
         break;
       case "complete":
+        result.sort((a) => {
+          if (a.isCompleted === true) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
         break;
       case "priority":
+        result.sort((a, b) => a.priority - b.priority);
         break;
       case "favorite":
+        result.sort((a) => {
+          if (a.favorite === true) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
         break;
       case "date":
+        result.sort((a, b) => b.deadline - a.deadline);
         break;
     }
-    const result = todos;
-    setSortResult(result);
+    // console.log(result);
+    return result;
   };
+  React.useEffect(() => {
+    setSortResult(sort());
+  });
+  // console.log(sortResult);
   return (
     <>
       <div style={{ marginTop: "30px" }}>
         <label htmlFor="sort">並び順(未実装): </label>
-        <select name="sort" id="sort" defaultValue="default" onChange={handleChange}>
+        <select name="sort" id="sort" defaultValue="default" onChange={(e) => setSelect(e.target.value)}>
           <option value="default">デフォルト</option>
           <option value="complete">達成済み</option>
           <option value="priority">優先度順</option>
@@ -69,12 +90,12 @@ const List: React.FC<Props> = ({
         </select>
       </div>
       <ListStyled>
-        {todos.map((todo, index) => (
+        {sortResult.map((todo, index) => (
           <TodoItem
             date={date}
             setDate={setDate}
             cancelUpdate={cancelUpdate}
-            changeTextform={changeTextform}
+            changeTask={changeTask}
             completeTodo={completeTodo}
             index={index}
             initialize={initialize}

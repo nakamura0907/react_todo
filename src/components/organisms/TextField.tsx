@@ -15,7 +15,7 @@ interface Props {
 const TextField: React.FC<Props> = ({ onClick, reset, value }) => {
   const [date, setDate] = React.useState(new Date());
   const [favorite, setFavorite] = React.useState(false);
-  const [priority, setPriority] = React.useState("black");
+  const [priority, setPriority] = React.useState(0);
   const handleClick = (): void => {
     const deadline = diff(date);
     if (value.values.todoForm) {
@@ -23,7 +23,7 @@ const TextField: React.FC<Props> = ({ onClick, reset, value }) => {
       onClick(value.values.todoForm, form);
       reset();
       setDate(new Date());
-      setPriority("black");
+      setPriority(0);
       setFavorite(false);
     }
   };
@@ -35,11 +35,16 @@ const TextField: React.FC<Props> = ({ onClick, reset, value }) => {
       </div>
       <div>
         <label htmlFor="priority">優先度: </label>
-        <select name="priority" id="priority" onChange={(e): void => setPriority(e.target.value)} value={priority}>
-          <option value="black">0</option>
-          <option value="blue">1</option>
-          <option value="orange">2</option>
-          <option value="red">3</option>
+        <select
+          name="priority"
+          id="priority"
+          onChange={(e): void => setPriority(parseInt(e.target.value))}
+          value={priority}
+        >
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
         </select>
       </div>
       <div>

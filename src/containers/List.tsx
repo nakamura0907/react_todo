@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
   removeTodo: (index): Record<string, number> => dispatch(Actions.removeTodo(index)),
   completeTodo: (id): Record<string, string> => dispatch(Actions.completeTodo(id)),
   updateTodo: (id, value, form): Record<string, string> => dispatch(Actions.updateTodo(id, value, form)),
-  changeTextform: (id): Record<string, string> => dispatch(Actions.changeTextform(id)),
+  changeTask: (id): Record<string, string> => dispatch(Actions.changeTask(id)),
   cancelUpdate: (): Record<string, void> => dispatch(Actions.cancelUpdate()),
 });
 

@@ -37,10 +37,10 @@ const TaskMenu = ({
         <div>
           <label htmlFor="priority">優先度: </label>
           <select name="priority" id="priority" value={priority} onChange={handleChangePriority}>
-            <option value="black">0</option>
-            <option value="blue">1</option>
-            <option value="orange">2</option>
-            <option value="red">3</option>
+            <option value={0}>0</option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
           </select>
         </div>
         <div>

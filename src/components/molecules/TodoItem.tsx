@@ -1,7 +1,6 @@
 import * as React from "react";
 import classNames from "classnames";
 import styled from "styled-components";
-// import * as moment from "moment";
 
 import ButtonIcon from "@atom/ButtonIcon";
 import TaskMenu from "@component/molecules/TaskMenu";
@@ -13,7 +12,7 @@ interface Todo {
   isCompleted: boolean;
   isTask: boolean;
   memo: string;
-  priority: string;
+  priority: number;
   value: string;
 }
 
@@ -21,7 +20,7 @@ interface Props {
   date: Date;
   setDate: Function;
   cancelUpdate: Function;
-  changeTextform: Function;
+  changeTask: Function;
   completeTodo: Function;
   index: number;
   initialize: Function;
@@ -36,7 +35,7 @@ const TodoItem: React.FC<Props> = ({
   date,
   setDate,
   cancelUpdate,
-  changeTextform,
+  changeTask,
   completeTodo,
   index,
   initialize,
@@ -53,9 +52,9 @@ const TodoItem: React.FC<Props> = ({
     "fa-square": !todo.isCompleted,
     "fa-check-square": todo.isCompleted,
   });
-  const handleClickChangeTextform = (): void => {
+  const handleClickchangeTask = (): void => {
     initialize({ todoListForm: todo.value });
-    changeTextform(todo.id);
+    changeTask(todo.id);
   };
   const handleClickRemove = (): void => {
     if (window.confirm("「" + todo.value + "」 を削除しますか?")) {
@@ -85,15 +84,17 @@ const TodoItem: React.FC<Props> = ({
     <>
       <ListItem className={classNames({ "is-completed": todo.isCompleted })}>
         <Icon onClick={handleClickComplete} className={iconClass} color={todo.priority} />
-        <ListText onClick={handleClickChangeTextform}>{todo.value}</ListText>
-        {todo.favorite ? (
-          <span>
-            <i className="fas fa-heart" style={{ marginRight: "15px", color: "pink", fontSize: "25px" }}></i>
-          </span>
-        ) : (
-          <></>
-        )}
-        <span style={{ width: "100%" }}>残り{Math.floor(todo.deadline)}日</span>
+        <TextWrap onClick={handleClickchangeTask}>
+          <ListText>{todo.value}</ListText>
+          {todo.favorite ? (
+            <span>
+              <HeartIcon className="fas fa-heart"></HeartIcon>
+            </span>
+          ) : (
+            <></>
+          )}
+          <Deadline>残り{Math.floor(todo.deadline)}日</Deadline>
+        </TextWrap>
         <ButtonIcon color="white" background="red" iconClass="far fa-trash-alt" onClick={handleClickRemove} />
       </ListItem>
       {todo.isTask ? (
@@ -104,7 +105,7 @@ const TodoItem: React.FC<Props> = ({
           memo={memo}
           handleChangeFavorite={(): void => setFavorite(!favorite)}
           handleChangeMemo={(e): void => setMemo(e.target.value)}
-          handleChangePriority={(e): void => setPriority(e.target.value)}
+          handleChangePriority={(e): void => setPriority(parseInt(e.target.value))}
           handleChangeDate={(date): void => setDate(date)}
           handleClickCancel={handleClickCancel}
           handleClickUpdate={handleClickUpdate}
@@ -117,7 +118,17 @@ const TodoItem: React.FC<Props> = ({
 };
 
 const Icon = styled.i`
-  color: ${(props) => props.color};
+  color: ${(props) => {
+    if (props.color === 0) {
+      return "black";
+    } else if (props.color === 1) {
+      return "blue";
+    } else if (props.color === 2) {
+      return "orange";
+    } else {
+      return "red";
+    }
+  }};
   margin-right: 10px;
   font-size: 36px;
 `;
@@ -143,6 +154,23 @@ const ListText = styled.p`
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+const TextWrap = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Deadline = styled.span`
+  width: 100%;
+`;
+
+const HeartIcon = styled.i`
+  margin-right: 15px;
+  color: pink;
+  font-size: 25px;
 `;
 
 export default TodoItem;

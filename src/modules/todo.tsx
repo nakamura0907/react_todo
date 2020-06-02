@@ -24,7 +24,7 @@ export const Actions = createActions(
       deadline: form.deadline,
       memo: form.memo,
     }),
-    CHANGE_TEXTFORM: (id) => ({ id }),
+    CHANGE_TASK: (id) => ({ id }),
   },
   "CANCEL_UPDATE"
 );
@@ -60,7 +60,7 @@ const todo = handleActions(
         return todo;
       }),
     }),
-    [Actions.changeTextform]: (state, action) => ({
+    [Actions.changeTask]: (state, action) => ({
       ...state,
       todos: state.todos.map((todo) => ({
         ...todo,

@@ -41,7 +41,7 @@ const List: React.FC<Props> = ({
   const [select, setSelect] = React.useState("default");
   const [sortResult, setSortResult] = React.useState(todos);
   const sort = () => {
-    const result = todos;
+    const result = [...todos];
     switch (select) {
       case "default":
         break;
@@ -70,17 +70,15 @@ const List: React.FC<Props> = ({
         result.sort((a, b) => b.deadline - a.deadline);
         break;
     }
-    // console.log(result);
     return result;
   };
   React.useEffect(() => {
     setSortResult(sort());
-  });
-  // console.log(sortResult);
+  }, [select, todos]);
   return (
     <>
       <div style={{ marginTop: "30px" }}>
-        <label htmlFor="sort">並び順(未実装): </label>
+        <label htmlFor="sort">並び順: </label>
         <select name="sort" id="sort" defaultValue="default" onChange={(e) => setSelect(e.target.value)}>
           <option value="default">デフォルト</option>
           <option value="complete">達成済み</option>

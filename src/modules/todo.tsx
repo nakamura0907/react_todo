@@ -55,7 +55,7 @@ const todo = handleActions(
       ...state,
       todos: state.todos.map((todo) => {
         if (action.payload.id === todo.id) {
-          return { ...action.payload, isForm: !todo.isForm };
+          return { ...action.payload, isForm: !todo.isForm, isCompleted: todo.isCompleted };
         }
         return todo;
       }),

@@ -29,7 +29,8 @@ const TextField: React.FC<Props> = ({ onClick, reset, value }) => {
   };
   return (
     <>
-      <div>
+      <Field name="todoForm" type="text" onClick={handleClick} validate={[Validate.required]} component={InputField} />
+      <div style={{ marginTop: "15px" }}>
         <label htmlFor="favorite">お気に入り: </label>
         <input type="checkbox" id="favorite" onChange={(): void => setFavorite(!favorite)} checked={favorite} />
       </div>
@@ -56,7 +57,6 @@ const TextField: React.FC<Props> = ({ onClick, reset, value }) => {
           maxDate={new Date(2100, 1, 1)}
         />
       </div>
-      <Field name="todoForm" type="text" onClick={handleClick} validate={[Validate.required]} component={InputField} />
     </>
   );
 };

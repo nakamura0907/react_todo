@@ -26,6 +26,22 @@ interface Props {
   updateTodo: Function;
 }
 
+const sortStrategy = {
+  complete: (a) => (a.isCompleted ? 1 : -1),
+  date: (a, b) => a.deadline - b.deadline,
+  priority: (a, b) => a.priority - b.priority,
+  favorite: (a) => (a.favorite ? 1 : -1),
+};
+
+const sort = (todos, select) => {
+  const result = [...todos];
+  if (select == "default") {
+    return result;
+  }
+  result.sort(sortStrategy[select]);
+  return result;
+};
+
 const List: React.FC<Props> = ({
   cancelUpdate,
   changeTask,
@@ -40,40 +56,8 @@ const List: React.FC<Props> = ({
   const [date, setDate] = React.useState(new Date());
   const [select, setSelect] = React.useState("default");
   const [sortResult, setSortResult] = React.useState(todos);
-  const sort = () => {
-    const result = [...todos];
-    switch (select) {
-      case "default":
-        break;
-      case "complete":
-        result.sort((a) => {
-          if (a.isCompleted === true) {
-            return 1;
-          } else {
-            return -1;
-          }
-        });
-        break;
-      case "priority":
-        result.sort((a, b) => a.priority - b.priority);
-        break;
-      case "favorite":
-        result.sort((a) => {
-          if (a.favorite === true) {
-            return 1;
-          } else {
-            return -1;
-          }
-        });
-        break;
-      case "date":
-        result.sort((a, b) => b.deadline - a.deadline);
-        break;
-    }
-    return result;
-  };
   React.useEffect(() => {
-    setSortResult(sort());
+    setSortResult(sort(todos, select));
   }, [select, todos]);
   return (
     <>

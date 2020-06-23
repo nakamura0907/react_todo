@@ -1,4 +1,4 @@
-import { styled, createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 #app {
@@ -21,7 +21,6 @@ ul{
     opacity: .5;
 }
 .is-completed p {
-    // background: orange;
     text-decoration: line-through;
  }
 `;

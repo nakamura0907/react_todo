@@ -3,7 +3,7 @@ import { createStore, compose } from "redux";
 import { Provider } from "react-redux";
 import { render } from "react-dom";
 
-import { createGlobalStyle } from "styled-components";
+import { GlobalStyle } from "@utils/styled/Global";
 import "@utils/Calendar.css";
 
 import reducers from "@module";
@@ -36,32 +36,6 @@ class App extends React.Component {
     );
   }
 }
-
-const GlobalStyle = createGlobalStyle`
-#app {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    padding: 0 24px;
-}
-* {
-    margin: 0;
-    padding: 0;
-}
-body {
-    font-family: proximanova, Gidole-Regular, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Segoe UI", Meiryo, sans-serif;
-}
-ul{
-    list-style-type: none;
-}
-.is-completed {
-    opacity: .5;
-}
-.is-completed p {
-    // background: orange;
-    text-decoration: line-through;
- }
-`;
 
 render(
   <Provider store={store}>
